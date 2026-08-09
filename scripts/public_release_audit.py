@@ -23,7 +23,8 @@ PHI_HEADER_RE = re.compile(r"(?i)^\s*(?:patient_id|medical_record_number|mrn|身
 
 def files(root: Path):
     for path in root.rglob("*"):
-        if not path.is_file() or path.name in SKIP_FILES or any(part in SKIP_PARTS for part in path.parts):
+        relative_parts = path.relative_to(root).parts
+        if not path.is_file() or path.name in SKIP_FILES or any(part in SKIP_PARTS for part in relative_parts):
             continue
         if path.suffix.lower() in TEXT_SUFFIXES:
             yield path

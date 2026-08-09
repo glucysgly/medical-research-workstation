@@ -38,7 +38,7 @@ verified against their SHA-256 manifest.
 | Claude adapter | valid frontmatter and shared references | 30 lines; references shared core | PASS | `skills/claude/medical-research-workstation/SKILL.md` |
 | documentation/license | public usage and safety boundaries | README, MIT, security, contribution, disclaimer and release docs present | PASS | repository root and `docs/` |
 | GitHub Actions | executable in GitHub | CI passed on `main` and `public-release-v1.0.0-rc1`; current Node 24 action majors are used | PASS | `.github/workflows/`; runs `31312723734`, `31312725160` |
-| release package | clean archive and SHA-256 manifest | 3 packages unpacked and audited; all hashes match | PASS | `dist/v1.0.0-rc1-publish/SHA256SUMS.txt` |
+| release package | clean archive and SHA-256 manifest | 3 packages unpacked and audited; all hashes match | PASS | `dist/v1.0.0-rc1-publish-final/SHA256SUMS.txt` |
 
 ## Privacy and security decision
 

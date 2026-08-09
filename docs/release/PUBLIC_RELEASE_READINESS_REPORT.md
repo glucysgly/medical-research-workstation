@@ -16,9 +16,10 @@ contain the internal workstation reports, real Production Pilot, patient or
 restricted data, private notes, Zotero attachments, credentials or large raw
 sequencing data.
 
-At this checkpoint, local release checks are complete. The candidate packages
-have been unpacked, privacy-audited and verified against their SHA-256
-manifest. The post-push GitHub Actions result remains pending.
+At this checkpoint, local release checks are complete and the first post-push
+GitHub Actions runs for both `main` and the public candidate branch completed
+successfully. The candidate packages have been unpacked, privacy-audited and
+verified against their SHA-256 manifest.
 
 ## Validation matrix
 
@@ -36,8 +37,8 @@ manifest. The post-push GitHub Actions result remains pending.
 | Codex adapter | valid frontmatter and shared references | 35 lines; references shared core | PASS | `skills/codex/medical-research-workstation/SKILL.md` |
 | Claude adapter | valid frontmatter and shared references | 30 lines; references shared core | PASS | `skills/claude/medical-research-workstation/SKILL.md` |
 | documentation/license | public usage and safety boundaries | README, MIT, security, contribution, disclaimer and release docs present | PASS | repository root and `docs/` |
-| GitHub Actions | executable in GitHub | workflow files present; remote run pending | UNVERIFIED | `.github/workflows/` |
-| release package | clean archive and SHA-256 manifest | 3 packages unpacked and audited; all hashes match | PASS | `dist/v1.0.0-rc1-release/SHA256SUMS.txt` |
+| GitHub Actions | executable in GitHub | CI passed on `main` and `public-release-v1.0.0-rc1` | PASS | `.github/workflows/`; runs `31312607055`, `31312607068` |
+| release package | clean archive and SHA-256 manifest | 3 packages unpacked and audited; all hashes match | PASS | `dist/v1.0.0-rc1-publish/SHA256SUMS.txt` |
 
 ## Privacy and security decision
 
@@ -95,12 +96,12 @@ private path, secret-shaped value or PHI/PII header was emitted.
 
 ## Status summary
 
-- PASS: 13 local gates
+- PASS: 14 gates (13 local checks plus post-push CI)
 - WARN: 4 limitations (optional runtimes, synthetic-only scope, maintainer
   metadata, release-candidate status)
 - FAIL: 0
 - BLOCKED: 0 at the local candidate gate
-- UNVERIFIED: 1 (GitHub Actions execution after the first push)
+- UNVERIFIED: 0
 - DEFERRED: real-data full-cohort analysis, deep Zotero/Obsidian integration,
   cloud deployment, large raw-data download and unverified platform support
 
@@ -114,5 +115,6 @@ uses a contributor identity rather than inventing a personal institutional
 affiliation.
 
 The package artifacts and SHA-256 manifest have been generated and inspected.
-GitHub Actions must be checked after the first push; a failing remote check
-remains a release blocker before the GitHub release is created.
+The first post-push CI runs passed on both pushed branches. The public-release
+audit workflow is additionally configured for manual dispatch and published
+release events; a failure there remains a release blocker.

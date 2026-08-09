@@ -21,6 +21,7 @@
 | v5 接受提交 | PASS | `beb59d7de624dc03942d2f6729fca8355ec08248` |
 | v5 接受标签 | PASS | `accepted-v5-20260809` |
 | v5.1 控制平面标签 | PASS | `production-hardening-v5.1-20260809` |
+| v5.1 观察期报告标签 | PASS | `production-hardening-v5.1-observation-20260809` |
 | 远程仓库 / push | PASS | 未配置 remote，未 push |
 | 凭据/隐私扫描 | PASS | staged 文件无 secret-pattern 文件命中；凭据值未写入报告 |
 
@@ -45,6 +46,7 @@ Zotero 当前满足受控的 MCP 只读发现，但不满足本地附件、colle
 | R 单细胞 | `PASS` | micromamba env `rpl-pci-r`；R 4.5.3、Seurat 5.5.1、SingleCellExperiment 1.32.0、scDblFinder 1.24.0 smoke PASS |
 | 可复现锁定 | `PASS` | `environment/locks/rpl-pci-scrna-linux-64.explicit.txt` 与 `rpl-pci-r-linux-64.explicit.txt` |
 | 兼容性记录 | `PASS` | `environment/scRNA-runtime-compatibility-20260809.md` |
+| h5py/HDF5 小版本提示 | `WARN` | h5ad 重新打开 PASS；读取时出现非阻断的构建/运行 HDF5 小版本提示，已记录于 CRI |
 
 原有 `bio-base` 环境未被改写。新增运行时只服务于真实 pilot 的 scRNA 生产路径。
 
@@ -166,6 +168,7 @@ Observation window 为 2–4 周：允许 weekly housekeeping 和 monthly retros
 
 - Zotero 当前是 `DEGRADED_LOCAL / MCP_AVAILABLE`，本地 Desktop/zcli/item/attachment 层未配置
 - scRNA 是真实 operational subset，不是全 cohort 发表级推断
+- h5py/HDF5 构建与运行小版本提示未阻断读取，但应在后续运行时维护中观察
 - ambient RNA、参考图谱注释和全量资源评估尚未完成
 - MR/GWAS 和公共组学等待真实输入
 - submission preflight 的图表、引用标识、报告规范需随 manuscript 和目标期刊确定

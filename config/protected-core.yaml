@@ -11,7 +11,8 @@ protected:
   no_automatic_outlier_deletion: true
   no_public_upload_of_restricted_data: true
   no_secret_output: true
+  donor_is_inferential_unit: true
+  cells_are_not_independent_biological_replicates: true
 promotion:
   auto_promote: false
   required_permission: human_approval
-

@@ -1,0 +1,398 @@
+{
+  "schema_version": "v5.1",
+  "matrix": "D:\\Users\\nmls\\Documents\\CodexProjects\\medical-research-workstation\\config\\domain-acceptance-matrix.json",
+  "domains": [
+    {
+      "domain_id": "clinical-observational",
+      "overall": "PASS",
+      "route": {
+        "status": "PASS",
+        "fields": {
+          "task_code": {
+            "expected": "RESEARCH",
+            "actual": "RESEARCH",
+            "match": true
+          },
+          "workflow": {
+            "expected": "clinical-observational",
+            "actual": "clinical-observational",
+            "match": true
+          },
+          "primary_skill": {
+            "expected": "nature-academic-search",
+            "actual": "nature-academic-search",
+            "match": true
+          }
+        },
+        "result": {
+          "ok": true,
+          "command": "route",
+          "query": "新建一个临床研究项目",
+          "task_code": "RESEARCH",
+          "primary_skill": "nature-academic-search",
+          "supporting_skills": [
+            "data-analytics:validate-data"
+          ],
+          "workflow_key": "clinical-observational",
+          "risk_gate": "research-integrity",
+          "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
+          "workflow": "clinical-observational",
+          "capability_workflow": "literature evidence",
+          "execution_layer": "web/MCP/Zotero read-first",
+          "preconditions": "source dates and reproducible query",
+          "minimum_validation": "source links DOI/PMID and dedup audit"
+        }
+      },
+      "smoke": {
+        "status": "PASS",
+        "negative_case": "missing project record => BLOCKED"
+      },
+      "expected": {
+        "domain_id": "clinical-observational",
+        "route_prompt": "新建一个临床研究项目",
+        "expected_route": {
+          "task_code": "RESEARCH",
+          "workflow": "clinical-observational",
+          "primary_skill": "nature-academic-search"
+        },
+        "fixture": "templates/clinical-study",
+        "smoke": "create project in isolated temporary root and verify project.yaml/status.yaml",
+        "expected_smoke": "PASS",
+        "failure_case": "missing project.yaml or status.yaml",
+        "expected_failure": "BLOCKED",
+        "privacy_gate": "restricted by default; raw_data immutable; PHI upload blocked"
+      }
+    },
+    {
+      "domain_id": "qpcr",
+      "overall": "PASS",
+      "route": {
+        "status": "PASS",
+        "fields": {
+          "task_code": {
+            "expected": "BIO",
+            "actual": "BIO",
+            "match": true
+          },
+          "workflow": {
+            "expected": "qpcr",
+            "actual": "qpcr",
+            "match": true
+          },
+          "primary_skill": {
+            "expected": "data-analytics:validate-data",
+            "actual": "data-analytics:validate-data",
+            "match": true
+          }
+        },
+        "result": {
+          "ok": true,
+          "command": "route",
+          "query": "分析这批 qPCR",
+          "task_code": "BIO",
+          "primary_skill": "data-analytics:validate-data",
+          "supporting_skills": [
+            "nature-data"
+          ],
+          "workflow_key": "qpcr",
+          "risk_gate": "research-integrity",
+          "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
+          "workflow": "qpcr",
+          "capability_workflow": "structured data QC",
+          "execution_layer": "Python/PowerShell",
+          "preconditions": "non-destructive read access",
+          "minimum_validation": "duplicates missingness units ranges"
+        }
+      },
+      "smoke": {
+        "status": "PASS",
+        "positive": true,
+        "negative_missing_ct": true
+      },
+      "expected": {
+        "domain_id": "qpcr",
+        "route_prompt": "分析这批 qPCR",
+        "expected_route": {
+          "task_code": "BIO",
+          "workflow": "qpcr",
+          "primary_skill": "data-analytics:validate-data"
+        },
+        "fixture": "in-memory biological/technical replicate CSV",
+        "smoke": "run qpcr_qc review with complete Ct values and duplicate technical-replicate negative case",
+        "expected_smoke": "PASS plus negative-case review_required",
+        "failure_case": "missing Ct, invalid range, duplicate technical replicate",
+        "expected_failure": "review_required",
+        "privacy_gate": "local-only; no patient identifiers emitted"
+      }
+    },
+    {
+      "domain_id": "systematic-review-meta",
+      "overall": "PASS",
+      "route": {
+        "status": "PASS",
+        "fields": {
+          "task_code": {
+            "expected": "RESEARCH",
+            "actual": "RESEARCH",
+            "match": true
+          },
+          "workflow": {
+            "expected": "systematic",
+            "actual": "systematic",
+            "match": true
+          },
+          "primary_skill": {
+            "expected": "nature-academic-search",
+            "actual": "nature-academic-search",
+            "match": true
+          }
+        },
+        "result": {
+          "ok": true,
+          "command": "route",
+          "query": "做系统综述",
+          "task_code": "RESEARCH",
+          "primary_skill": "nature-academic-search",
+          "supporting_skills": [
+            "literature-downloader"
+          ],
+          "workflow_key": "systematic",
+          "risk_gate": "research-integrity",
+          "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
+          "workflow": "systematic",
+          "capability_workflow": "literature evidence",
+          "execution_layer": "web/MCP/Zotero read-first",
+          "preconditions": "source dates and reproducible query",
+          "minimum_validation": "source links DOI/PMID and dedup audit"
+        }
+      },
+      "smoke": {
+        "status": "PASS",
+        "required": [
+          "protocol",
+          "literature",
+          "analysis",
+          "results",
+          "provenance"
+        ],
+        "base": "D:\\Users\\nmls\\Documents\\CodexProjects\\medical-research-workstation\\templates\\systematic-review-meta"
+      },
+      "expected": {
+        "domain_id": "systematic-review-meta",
+        "route_prompt": "做系统综述",
+        "expected_route": {
+          "task_code": "RESEARCH",
+          "workflow": "systematic",
+          "primary_skill": "nature-academic-search"
+        },
+        "fixture": "templates/systematic-review-meta",
+        "smoke": "verify protocol/literature/analysis/results/provenance template surfaces and route",
+        "expected_smoke": "PASS for control-plane scaffold; evidence synthesis requires live sources",
+        "failure_case": "no protocol or no traceable source record",
+        "expected_failure": "BLOCKED",
+        "privacy_gate": "public evidence only unless explicitly classified otherwise"
+      }
+    },
+    {
+      "domain_id": "mr-gwas",
+      "overall": "WARN",
+      "route": {
+        "status": "PASS",
+        "fields": {
+          "task_code": {
+            "expected": "BIO",
+            "actual": "BIO",
+            "match": true
+          },
+          "workflow": {
+            "expected": "mr-gwas",
+            "actual": "mr-gwas",
+            "match": true
+          },
+          "primary_skill": {
+            "expected": "research",
+            "actual": "research",
+            "match": true
+          }
+        },
+        "result": {
+          "ok": true,
+          "command": "route",
+          "query": "做 MR",
+          "task_code": "BIO",
+          "primary_skill": "research",
+          "supporting_skills": [
+            "life-science-research:gwas-catalog-skill"
+          ],
+          "workflow_key": "mr-gwas",
+          "risk_gate": "research-integrity",
+          "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
+          "workflow": "mr-gwas"
+        }
+      },
+      "smoke": {
+        "status": "PASS",
+        "required": [
+          "domain.yaml",
+          "routing-contract.md",
+          "AGENTS.md"
+        ],
+        "base": "D:\\Users\\nmls\\Documents\\CodexProjects\\medical-research-workstation\\domain-packs\\mr-gwas",
+        "runtime_boundary": "BLOCKED without real external input; no synthetic scientific result generated"
+      },
+      "expected": {
+        "domain_id": "mr-gwas",
+        "route_prompt": "做 MR",
+        "expected_route": {
+          "task_code": "BIO",
+          "workflow": "mr-gwas",
+          "primary_skill": "research"
+        },
+        "fixture": "domain-packs/mr-gwas",
+        "smoke": "verify route and domain contract; no fabricated summary statistics",
+        "expected_smoke": "PASS route/contract; BLOCKED without real exposure/outcome inputs",
+        "failure_case": "missing GWAS IDs, allele harmonization or LD evidence",
+        "expected_failure": "BLOCKED",
+        "privacy_gate": "public summary statistics preferred; restricted individual-level data cannot upload"
+      }
+    },
+    {
+      "domain_id": "public-omics-bulk",
+      "overall": "WARN",
+      "route": {
+        "status": "PASS",
+        "fields": {
+          "task_code": {
+            "expected": "BIO",
+            "actual": "BIO",
+            "match": true
+          },
+          "workflow": {
+            "expected": "public-omics",
+            "actual": "public-omics",
+            "match": true
+          },
+          "primary_skill": {
+            "expected": "ngs-analysis:ngs-analysis-router",
+            "actual": "ngs-analysis:ngs-analysis-router",
+            "match": true
+          }
+        },
+        "result": {
+          "ok": true,
+          "command": "route",
+          "query": "分析这个 GEO",
+          "task_code": "BIO",
+          "primary_skill": "ngs-analysis:ngs-analysis-router",
+          "supporting_skills": [
+            "ngs-analysis:ngs-runtime-env",
+            "data-analytics:validate-data"
+          ],
+          "workflow_key": "public-omics",
+          "risk_gate": "research-integrity",
+          "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
+          "workflow": "public-omics"
+        }
+      },
+      "smoke": {
+        "status": "PASS",
+        "required": [
+          "domain.yaml",
+          "routing-contract.md",
+          "AGENTS.md"
+        ],
+        "base": "D:\\Users\\nmls\\Documents\\CodexProjects\\medical-research-workstation\\domain-packs\\public-omics",
+        "runtime_boundary": "BLOCKED without real external input; no synthetic scientific result generated"
+      },
+      "expected": {
+        "domain_id": "public-omics-bulk",
+        "route_prompt": "分析这个 GEO",
+        "expected_route": {
+          "task_code": "BIO",
+          "workflow": "public-omics",
+          "primary_skill": "ngs-analysis:ngs-analysis-router"
+        },
+        "fixture": "domain-packs/public-omics",
+        "smoke": "verify accession-oriented route, runtime gate and metadata/QC contract",
+        "expected_smoke": "PASS route/contract; BLOCKED until real accession and suitable matrix are supplied",
+        "failure_case": "unresolved sample annotation or unavailable raw/count input",
+        "expected_failure": "BLOCKED",
+        "privacy_gate": "public dataset provenance required; no restricted upload"
+      }
+    },
+    {
+      "domain_id": "scrna",
+      "overall": "PASS",
+      "route": {
+        "status": "PASS",
+        "fields": {
+          "task_code": {
+            "expected": "BIO",
+            "actual": "BIO",
+            "match": true
+          },
+          "workflow": {
+            "expected": "scrna",
+            "actual": "scrna",
+            "match": true
+          },
+          "primary_skill": {
+            "expected": "ngs-analysis:scrna-seq-qc",
+            "actual": "ngs-analysis:scrna-seq-qc",
+            "match": true
+          }
+        },
+        "result": {
+          "ok": true,
+          "command": "route",
+          "query": "做单细胞分析",
+          "task_code": "BIO",
+          "primary_skill": "ngs-analysis:scrna-seq-qc",
+          "supporting_skills": [
+            "ngs-analysis:ngs-runtime-env"
+          ],
+          "workflow_key": "scrna",
+          "risk_gate": "research-integrity",
+          "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
+          "workflow": "scrna",
+          "capability_workflow": "scRNA-seq",
+          "execution_layer": "WSL/R/Python",
+          "preconditions": "working WSL/runtime",
+          "minimum_validation": "fixture and marker sanity checks"
+        }
+      },
+      "smoke": {
+        "status": "PASS",
+        "required_outputs": [
+          "D:\\Users\\nmls\\Documents\\New project\\results\\scrna-production\\run-20260809\\result-manifest.json",
+          "D:\\Users\\nmls\\Documents\\New project\\results\\scrna-production\\run-20260809\\filtered_annotated.h5ad",
+          "D:\\Users\\nmls\\Documents\\New project\\results\\scrna-production\\run-20260809\\provenance\\run_metadata.json",
+          "D:\\Users\\nmls\\Documents\\New project\\results\\scrna-production\\run-20260809\\tables\\donor_aware_de.csv"
+        ],
+        "run_status": "PASS"
+      },
+      "expected": {
+        "domain_id": "scrna",
+        "route_prompt": "做单细胞分析",
+        "expected_route": {
+          "task_code": "BIO",
+          "workflow": "scrna",
+          "primary_skill": "ngs-analysis:scrna-seq-qc"
+        },
+        "fixture": "D:/Users/nmls/Documents/New project/results/scrna-production/run-20260809",
+        "smoke": "verify isolated Scanpy/R runtimes, real scDblFinder partitions, h5ad, UMAP, marker and donor-pseudobulk outputs",
+        "expected_smoke": "PASS only when the real-data run manifest and reproduce check verify",
+        "failure_case": "missing scDblFinder, cell-as-replicate inference or incomplete provenance",
+        "expected_failure": "BLOCKED",
+        "privacy_gate": "raw data immutable; donor/library IDs remain restricted local metadata"
+      }
+    }
+  ],
+  "generated_by": "D:\\Users\\nmls\\Documents\\CodexProjects\\medical-research-workstation\\scripts\\run_domain_acceptance.py",
+  "summary": {
+    "PASS": 4,
+    "WARN": 2,
+    "FAIL": 0,
+    "BLOCKED": 0
+  }
+}

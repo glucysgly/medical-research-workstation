@@ -506,11 +506,15 @@ class ResearchCtl:
     def command_route(self, query: str) -> dict[str, Any]:
         lowered = query.lower()
         routes = [
+            ("nature-academic-search", "RESEARCH", ("临床研究", "临床试验", "队列", "病例对照", "observational", "cohort"), ["data-analytics:validate-data"], "clinical-observational"),
+            ("research", "RESEARCH", ("继续这个课题", "继续课题", "resume", "continue", "项目状态", "所有项目", "卡在哪里"), ["superpowers:verification-before-completion"], "project-resume-status"),
+            ("data-analytics:validate-data", "DATA", ("检查这份数据", "检查数据", "数据质控"), ["data-analytics:analyze-data-quality"], "structured"),
             ("data-analytics:validate-data", "BIO", ("qpcr", "ct", "ddct", "delta ct", "定量pcr", "荧光定量"), ["nature-data"], "qpcr"),
             ("nature-academic-search", "RESEARCH", ("systematic review", "系统综述", "meta-analysis", "meta分析", "荟萃", "prisma", "screening", "筛选"), ["literature-downloader"], "systematic"),
             ("research", "BIO", ("mendelian", "孟德尔随机化", "mr", "gwas", "工具变量", "harmoniz"), ["life-science-research:gwas-catalog-skill"], "mr-gwas"),
-            ("ngs-analysis:ngs-analysis-router", "BIO", ("geo", "rna-seq", "转录组", "单细胞", "transcriptome", "omics", "组学"), ["ngs-analysis:ngs-runtime-env", "data-analytics:validate-data"], "public-omics"),
-            ("nature-reviewer", "RESEARCH", ("manuscript qc", "结果数字", "前后矛盾", "inconsistency", "table", "figure", "投稿", "返修", "submission"), ["nature-citation"], "manuscript"),
+            ("ngs-analysis:scrna-seq-qc", "BIO", ("单细胞", "single-cell", "scrna"), ["ngs-analysis:ngs-runtime-env"], "scrna"),
+            ("ngs-analysis:ngs-analysis-router", "BIO", ("geo", "rna-seq", "转录组", "transcriptome", "omics", "组学"), ["ngs-analysis:ngs-runtime-env", "data-analytics:validate-data"], "public-omics"),
+            ("nature-reviewer", "RESEARCH", ("检查论文", "论文质控", "manuscript qc", "结果数字", "前后矛盾", "inconsistency", "table", "figure", "投稿", "返修", "submission"), ["nature-citation"], "manuscript"),
             ("nature-academic-search", "RESEARCH", ("literature", "文献", "evidence", "证据", "guideline", "指南", "paper", "论文", "doi", "pmid"), ["literature-downloader", "zotero-deduplicated-import"], "literature"),
             ("superpowers:verification-before-completion", "RESEARCH", ("reproduce", "复现", "provenance", "溯源", "lockfile", "environment", "环境", "render", "渲染", "可重复"), ["context-mode:ctx-doctor"], "reproduc"),
             ("security-and-hardening", "RESEARCH", ("phi", "pii", "secret", "privacy", "隐私", "患者", "个人信息", "upload", "上传"), [], "privacy"),
@@ -538,14 +542,18 @@ class ResearchCtl:
             "task_code": task_code,
             "primary_skill": primary,
             "supporting_skills": supporting,
+            "workflow_key": workflow_key,
             "risk_gate": "research-integrity" if primary != "security-and-hardening" else "human-decision-gate",
             "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
         }
         if capability:
-            result["workflow"] = capability.get("workflow")
+            result["workflow"] = workflow_key
+            result["capability_workflow"] = capability.get("workflow")
             result["execution_layer"] = capability.get("execution_layer")
             result["preconditions"] = capability.get("preconditions")
             result["minimum_validation"] = capability.get("verification")
+        else:
+            result["workflow"] = workflow_key
         return result
 
     def _raw_files(self, path: Path) -> Iterable[Path]:
@@ -693,6 +701,88 @@ class ResearchCtl:
         verification["valid"] = bool(verification.get("valid")) and all(item["unchanged"] for item in output_checks)
         return {"ok": True, "command": "reproduce", "run_id": run.get("run_id"), "project_id": run.get("project_id"), "recorded_command": run.get("command"), "verification": verification, "reproducible": bool(verification.get("valid"))}
 
+    def command_submission_preflight(self, project_path: str, manuscript: str | None = None, web_evidence: str | None = None) -> dict[str, Any]:
+        root = Path(project_path).expanduser().resolve()
+        if not root.is_dir():
+            raise ResearchCtlError("project path is not a directory")
+        project = load_text_record(root / "project.yaml", {}) or {}
+        status_record = load_text_record(root / "status.yaml", {}) or {}
+        project_id = str(project.get("project_id", root.name))
+        manuscript_root = Path(manuscript).expanduser().resolve() if manuscript else root / "manuscript"
+        if manuscript_root.is_file():
+            manuscript_files = [manuscript_root]
+        elif manuscript_root.is_dir():
+            manuscript_files = sorted(item for item in manuscript_root.rglob("*") if item.is_file() and item.suffix.lower() in {".md", ".qmd", ".tex", ".doc", ".docx", ".txt"})
+        else:
+            manuscript_files = []
+
+        checks: list[dict[str, Any]] = []
+        checks.append({"name": "project_yaml", "status": "PASS" if (root / "project.yaml").is_file() else "FAIL", "detail": "project metadata present"})
+        checks.append({"name": "status_yaml", "status": "PASS" if (root / "status.yaml").is_file() else "WARN", "detail": str(status_record.get("status", status_record.get("current_stage", "unknown")))})
+        checks.append({"name": "manuscript_input", "status": "PASS" if manuscript_files else "BLOCKED", "detail": f"{len(manuscript_files)} manuscript source file(s)"})
+
+        raw_manifest_path = root / "data" / "manifests" / "raw-manifest.json"
+        raw_manifest = load_text_record(raw_manifest_path, None)
+        manifest_check = self._verify_manifest(root, raw_manifest) if isinstance(raw_manifest, dict) else {"valid": False}
+        if not manifest_check.get("valid") and isinstance(raw_manifest, dict) and isinstance(raw_manifest.get("files"), list):
+            legacy_checks = []
+            for entry in raw_manifest["files"]:
+                relative = str(entry.get("path", ""))
+                candidate = (root / relative).resolve()
+                expected_hash = entry.get("sha256")
+                inside = root.resolve() in candidate.parents
+                exists = inside and candidate.is_file() and not candidate.is_symlink()
+                legacy_checks.append(exists and sha256_file(candidate) == expected_hash)
+            manifest_check = {"valid": bool(legacy_checks) and all(legacy_checks), "legacy_manifest": True}
+        checks.append({"name": "raw_manifest_and_hashes", "status": "PASS" if manifest_check.get("valid") else "BLOCKED", "detail": "raw inputs unchanged" if manifest_check.get("valid") else "manifest missing or mismatch"})
+        privacy = self._privacy_scan(root)
+        privacy_status = "FAIL" if privacy.get("secret_file_count", 0) else ("WARN" if privacy.get("potential_phi_header_count", 0) or privacy.get("unreadable_file_count", 0) else "PASS")
+        checks.append({"name": "privacy_and_raw_protection", "status": privacy_status, "detail": "counts only; no secret values emitted"})
+
+        text = "\n".join(item.read_text(encoding="utf-8", errors="ignore")[:2_000_000] for item in manuscript_files if item.suffix.lower() not in {".doc", ".docx"})
+        figures = sorted((root / "results" / "figures").glob("*") if (root / "results" / "figures").is_dir() else [])
+        tables = sorted((root / "results" / "tables").glob("*") if (root / "results" / "tables").is_dir() else [])
+        figure_refs = len(re.findall(r"(?i)\bfig(?:ure)?\s*\d+", text))
+        table_refs = len(re.findall(r"(?i)\btable\s*\d+", text))
+        checks.append({"name": "figure_table_inventory", "status": "PASS" if (figures or tables) and (figure_refs or table_refs) else "WARN", "detail": f"files={len(figures)} figures/{len(tables)} tables; references={figure_refs} figure/{table_refs} table"})
+        doi_count = len(set(re.findall(r"10\.\d{4,9}/[-._;()/:A-Z0-9]+", text, flags=re.I)))
+        pmid_count = len(set(re.findall(r"(?i)\bPMID\s*[:]?\s*\d+", text)))
+        checks.append({"name": "citation_identifiers", "status": "PASS" if doi_count or pmid_count else ("BLOCKED" if manuscript_files else "WARN"), "detail": f"unique DOI={doi_count}; PMID={pmid_count}; identifier existence only"})
+
+        template = str(project.get("type", project.get("template", ""))).lower()
+        guideline = "PRISMA" if "systematic" in template or "meta" in template else "MIQE" if "qpcr" in template else "STROBE" if "clinical" in template or "observ" in template else "scRNA-seq methods + donor-unit rule" if "scrna" in template or "single" in template else "domain-specific reporting checklist"
+        guideline_present = guideline.split()[0].casefold() in text.casefold() if text else False
+        checks.append({"name": "reporting_guideline", "status": "PASS" if guideline_present else "WARN", "detail": guideline})
+        checks.append({"name": "numeric_consistency", "status": "WARN" if manuscript_files else "BLOCKED", "detail": "manual cross-check required for n, effect, CI, P, tables and figures"})
+
+        web_status = "BLOCKED"
+        web_detail = "no web evidence file supplied"
+        if web_evidence:
+            evidence_path = Path(web_evidence).expanduser().resolve()
+            evidence = load_text_record(evidence_path, None)
+            sources = evidence.get("sources") if isinstance(evidence, dict) else None
+            checked_at = evidence.get("checked_at") if isinstance(evidence, dict) else None
+            web_status = "PASS" if isinstance(sources, list) and bool(sources) and checked_at else "BLOCKED"
+            web_detail = f"sources={len(sources) if isinstance(sources, list) else 0}; checked_at={checked_at or 'missing'}"
+        checks.append({"name": "journal_instructions_and_retractions", "status": web_status, "detail": web_detail})
+
+        priority = {item["status"] for item in checks}
+        if "FAIL" in priority:
+            overall = "FAIL"
+        elif "BLOCKED" in priority:
+            overall = "BLOCKED"
+        elif "WARN" in priority:
+            overall = "WARN"
+        else:
+            overall = "PASS"
+        report_path = root / "reports" / "SUBMISSION_PREFLIGHT_REPORT.md"
+        report_lines = [f"# Submission Preflight — {project_id}", "", f"Generated: {utc_now()}", f"Overall: **{overall}**", "", "This is a gate report; it does not promote a manuscript or alter protected research decisions.", "", "| Check | Status | Detail |", "|---|---|---|"]
+        report_lines.extend(f"| {item['name']} | {item['status']} | {item['detail']} |" for item in checks)
+        report_lines.extend(["", "## Required human review", "", "- Verify every numeric claim against source tables and figures.", "- Verify DOI/PMID resolution, retractions, reporting guideline, journal instructions and supplement requirements using current authoritative web sources.", "- Confirm privacy clearance and that no raw/restricted data are uploaded."])
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text("\n".join(report_lines) + "\n", encoding="utf-8")
+        return {"ok": True, "command": "submission preflight", "project_id": project_id, "project_path": str(root), "overall_status": overall, "checks": checks, "report": str(report_path)}
+
     def command_review(self, cadence: str) -> dict[str, Any]:
         if cadence not in {"weekly", "monthly"}:
             raise ResearchCtlError("review cadence must be weekly or monthly")
@@ -744,6 +834,12 @@ def make_parser() -> argparse.ArgumentParser:
     reproduce = sub.add_parser("reproduce")
     reproduce.add_argument("run_id")
     reproduce.add_argument("--project", dest="project_id")
+    submission = sub.add_parser("submission")
+    submission_sub = submission.add_subparsers(dest="submission_command", required=True)
+    preflight = submission_sub.add_parser("preflight")
+    preflight.add_argument("--path", required=True, dest="project_path")
+    preflight.add_argument("--manuscript")
+    preflight.add_argument("--web-evidence")
     review = sub.add_parser("review")
     review.add_argument("cadence", nargs="?", default="weekly")
     optimize = sub.add_parser("optimize")
@@ -773,6 +869,8 @@ def dispatch(args: argparse.Namespace, ctl: ResearchCtl) -> dict[str, Any]:
         return ctl.command_provenance(args.project_id)
     if args.command == "reproduce":
         return ctl.command_reproduce(args.run_id, args.project_id)
+    if args.command == "submission" and args.submission_command == "preflight":
+        return ctl.command_submission_preflight(args.project_path, args.manuscript, args.web_evidence)
     if args.command == "review":
         return ctl.command_review(args.cadence)
     if args.command == "optimize":

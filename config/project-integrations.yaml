@@ -1,0 +1,15 @@
+schema_version: 1
+policy: read_first_no_library_restructure
+mappings:
+  - project_id: rpl-pci-production-pilot
+    project_root: D:/Users/nmls/Documents/New project
+    obsidian:
+      vault_path: D:/nmls/Documents/Obsidians/kljk
+      note_path: Research Projects/rpl-pci-production-pilot.md
+      status: PASS_REAL_VAULT_READ_AND_DEDICATED_NOTE
+    zotero:
+      library: My Library
+      collection_query: RPL
+      collection_status: BLOCKED_LOCAL_COLLECTION_API_UNAVAILABLE
+      metadata_status: BLOCKED_NO_KNOWN_PAPER_MATCH
+      writes_performed: false

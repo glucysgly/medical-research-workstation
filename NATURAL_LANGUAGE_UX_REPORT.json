@@ -1,0 +1,105 @@
+{
+  "schema_version": "v5.1",
+  "tests": [
+    {
+      "prompt": "新建一个临床研究项目",
+      "expected": "clinical-observational",
+      "actual": "clinical-observational",
+      "primary_skill": "nature-academic-search",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "prompt": "继续这个课题",
+      "expected": "project-resume-status",
+      "actual": "project-resume-status",
+      "primary_skill": "research",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "prompt": "检查这份数据",
+      "expected": "structured",
+      "actual": "structured",
+      "primary_skill": "data-analytics:validate-data",
+      "task_code": "DATA",
+      "status": "PASS"
+    },
+    {
+      "prompt": "分析这批 qPCR",
+      "expected": "qpcr",
+      "actual": "qpcr",
+      "primary_skill": "data-analytics:validate-data",
+      "task_code": "BIO",
+      "status": "PASS"
+    },
+    {
+      "prompt": "做系统综述",
+      "expected": "systematic",
+      "actual": "systematic",
+      "primary_skill": "nature-academic-search",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "prompt": "做 MR",
+      "expected": "mr-gwas",
+      "actual": "mr-gwas",
+      "primary_skill": "research",
+      "task_code": "BIO",
+      "status": "PASS"
+    },
+    {
+      "prompt": "分析这个 GEO",
+      "expected": "public-omics",
+      "actual": "public-omics",
+      "primary_skill": "ngs-analysis:ngs-analysis-router",
+      "task_code": "BIO",
+      "status": "PASS"
+    },
+    {
+      "prompt": "做单细胞分析",
+      "expected": "scrna",
+      "actual": "scrna",
+      "primary_skill": "ngs-analysis:scrna-seq-qc",
+      "task_code": "BIO",
+      "status": "PASS"
+    },
+    {
+      "prompt": "检查论文",
+      "expected": "manuscript",
+      "actual": "manuscript",
+      "primary_skill": "nature-reviewer",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "prompt": "准备投稿",
+      "expected": "manuscript",
+      "actual": "manuscript",
+      "primary_skill": "nature-reviewer",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "prompt": "复现上次分析",
+      "expected": "reproduc",
+      "actual": "reproduc",
+      "primary_skill": "superpowers:verification-before-completion",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    },
+    {
+      "prompt": "看看所有项目现在卡在哪里",
+      "expected": "project-resume-status",
+      "actual": "project-resume-status",
+      "primary_skill": "research",
+      "task_code": "RESEARCH",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "PASS": 12,
+    "FAIL": 0
+  }
+}

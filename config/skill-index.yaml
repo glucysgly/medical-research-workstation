@@ -53,6 +53,12 @@ skills:
     triggers: [GEO, ArrayExpress, transcriptome, RNA-seq, public omics]
     summary: Dataset suitability, annotation, QC, analysis and validation for public omics.
     priority: 90
+  - name: scrna-qc
+    category: single-cell-omics
+    skill_ref: ngs-analysis:scrna-seq-qc
+    triggers: [single-cell, scRNA-seq, scRNA, UMAP, doublet, scDblFinder, donor pseudobulk]
+    summary: Data-driven single-cell QC, partition-aware scDblFinder, conservative annotation, embeddings and donor-aware inference.
+    priority: 100
   - name: scientific-writing
     category: scientific-writing
     skill_ref: nature-writing

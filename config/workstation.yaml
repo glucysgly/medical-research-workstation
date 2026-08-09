@@ -22,9 +22,15 @@ integrations:
     mode: read_first
     allow_write: false
     allow_full_library_scan: false
+    status: degraded_local_mcp_available
+    local_adapter: blocked_zotero_desktop_not_running
+    collection_resolution: blocked_local_api_unavailable
   obsidian:
     mode: local_filesystem_first
     restructure_vault: false
+    vault_path: D:/nmls/Documents/Obsidians/kljk
+    dedicated_research_area: Research Projects
+    allow_project_note_creation: true
   external_upload:
     default: blocked
   git_push:

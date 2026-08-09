@@ -1,0 +1,74 @@
+{
+  "schema_version": "v5.1",
+  "purpose": "Core-domain route, fixture, smoke, expected-result, failure and privacy acceptance.",
+  "core_domains": [
+    {
+      "domain_id": "clinical-observational",
+      "route_prompt": "新建一个临床研究项目",
+      "expected_route": {"task_code": "RESEARCH", "workflow": "clinical-observational", "primary_skill": "nature-academic-search"},
+      "fixture": "templates/clinical-study",
+      "smoke": "create project in isolated temporary root and verify project.yaml/status.yaml",
+      "expected_smoke": "PASS",
+      "failure_case": "missing project.yaml or status.yaml",
+      "expected_failure": "BLOCKED",
+      "privacy_gate": "restricted by default; raw_data immutable; PHI upload blocked"
+    },
+    {
+      "domain_id": "qpcr",
+      "route_prompt": "分析这批 qPCR",
+      "expected_route": {"task_code": "BIO", "workflow": "qpcr", "primary_skill": "data-analytics:validate-data"},
+      "fixture": "in-memory biological/technical replicate CSV",
+      "smoke": "run qpcr_qc review with complete Ct values and duplicate technical-replicate negative case",
+      "expected_smoke": "PASS plus negative-case review_required",
+      "failure_case": "missing Ct, invalid range, duplicate technical replicate",
+      "expected_failure": "review_required",
+      "privacy_gate": "local-only; no patient identifiers emitted"
+    },
+    {
+      "domain_id": "systematic-review-meta",
+      "route_prompt": "做系统综述",
+      "expected_route": {"task_code": "RESEARCH", "workflow": "systematic", "primary_skill": "nature-academic-search"},
+      "fixture": "templates/systematic-review-meta",
+      "smoke": "verify protocol/literature/analysis/results/provenance template surfaces and route",
+      "expected_smoke": "PASS for control-plane scaffold; evidence synthesis requires live sources",
+      "failure_case": "no protocol or no traceable source record",
+      "expected_failure": "BLOCKED",
+      "privacy_gate": "public evidence only unless explicitly classified otherwise"
+    },
+    {
+      "domain_id": "mr-gwas",
+      "route_prompt": "做 MR",
+      "expected_route": {"task_code": "BIO", "workflow": "mr-gwas", "primary_skill": "research"},
+      "fixture": "domain-packs/mr-gwas",
+      "smoke": "verify route and domain contract; no fabricated summary statistics",
+      "expected_smoke": "PASS route/contract; BLOCKED without real exposure/outcome inputs",
+      "failure_case": "missing GWAS IDs, allele harmonization or LD evidence",
+      "expected_failure": "BLOCKED",
+      "privacy_gate": "public summary statistics preferred; restricted individual-level data cannot upload"
+    },
+    {
+      "domain_id": "public-omics-bulk",
+      "route_prompt": "分析这个 GEO",
+      "expected_route": {"task_code": "BIO", "workflow": "public-omics", "primary_skill": "ngs-analysis:ngs-analysis-router"},
+      "fixture": "domain-packs/public-omics",
+      "smoke": "verify accession-oriented route, runtime gate and metadata/QC contract",
+      "expected_smoke": "PASS route/contract; BLOCKED until real accession and suitable matrix are supplied",
+      "failure_case": "unresolved sample annotation or unavailable raw/count input",
+      "expected_failure": "BLOCKED",
+      "privacy_gate": "public dataset provenance required; no restricted upload"
+    },
+    {
+      "domain_id": "scrna",
+      "route_prompt": "做单细胞分析",
+      "expected_route": {"task_code": "BIO", "workflow": "scrna", "primary_skill": "ngs-analysis:scrna-seq-qc"},
+      "fixture": "D:/Users/nmls/Documents/New project/results/scrna-production/run-20260809",
+      "smoke": "verify isolated Scanpy/R runtimes, real scDblFinder partitions, h5ad, UMAP, marker and donor-pseudobulk outputs",
+      "expected_smoke": "PASS only when the real-data run manifest and reproduce check verify",
+      "failure_case": "missing scDblFinder, cell-as-replicate inference or incomplete provenance",
+      "expected_failure": "BLOCKED",
+      "privacy_gate": "raw data immutable; donor/library IDs remain restricted local metadata"
+    }
+  ],
+  "optional_activation_tests": ["ngs", "atac-chip", "variant-calling"],
+  "protected_rules": ["donor_is_inferential_unit", "cells_are_not_independent_biological_replicates", "raw_data_immutable", "no_secret_output"]
+}

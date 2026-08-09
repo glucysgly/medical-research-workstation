@@ -16,8 +16,9 @@ contain the internal workstation reports, real Production Pilot, patient or
 restricted data, private notes, Zotero attachments, credentials or large raw
 sequencing data.
 
-At this checkpoint, local release checks are complete. Package hashes and the
-post-push GitHub Actions result are recorded separately when those steps finish.
+At this checkpoint, local release checks are complete. The candidate packages
+have been unpacked, privacy-audited and verified against their SHA-256
+manifest. The post-push GitHub Actions result remains pending.
 
 ## Validation matrix
 
@@ -25,7 +26,7 @@ post-push GitHub Actions result are recorded separately when those steps finish.
 |---|---|---|---|---|
 | v5.1 baseline mapping | distinguish internal baseline from public candidate | documented and redacted | PASS | `docs/release/BASELINE_REVIEW.md` |
 | public candidate history | no internal history inheritance | fresh root commit | PASS | `git log` on public candidate |
-| current-tree privacy/path scan | zero unexplained matches | 231 text files; 0 private-path, secret or PHI/PII matches | PASS | `scripts/public_release_audit.py --strict` |
+| current-tree privacy/path scan | zero unexplained matches | 232 text files; 0 private-path, secret or PHI/PII matches | PASS | `scripts/public_release_audit.py --strict` |
 | unit tests | no failures | 13/13 passed | PASS | `python -m unittest discover -s tests -p "test_*.py" -v` |
 | synthetic smoke | deterministic and synthetic-only | route, fixture parsing and safety boundary passed | PASS | `examples/synthetic/run_synthetic_smoke.py` |
 | doctor | portable diagnostics | required checks passed | PASS | `scripts/researchctl.py doctor --json` |
@@ -36,7 +37,7 @@ post-push GitHub Actions result are recorded separately when those steps finish.
 | Claude adapter | valid frontmatter and shared references | 30 lines; references shared core | PASS | `skills/claude/medical-research-workstation/SKILL.md` |
 | documentation/license | public usage and safety boundaries | README, MIT, security, contribution, disclaimer and release docs present | PASS | repository root and `docs/` |
 | GitHub Actions | executable in GitHub | workflow files present; remote run pending | UNVERIFIED | `.github/workflows/` |
-| release package | clean archive and SHA-256 manifest | not yet generated at initial report checkpoint | UNVERIFIED | `dist/` |
+| release package | clean archive and SHA-256 manifest | 3 packages unpacked and audited; all hashes match | PASS | `dist/v1.0.0-rc1-release/SHA256SUMS.txt` |
 
 ## Privacy and security decision
 
@@ -80,14 +81,26 @@ The synthetic examples validate control flow and safety boundaries only. They
 do not validate scientific effect sizes, clinical conclusions, publication
 readiness or biological inference.
 
+## Local package artifacts
+
+The publish bundle contains three independently usable artifacts:
+
+- `medical-research-workstation-v1.0.0-rc1.zip`
+- `medical-research-workstation-codex-skill-v1.0.0-rc1.zip`
+- `medical-research-workstation-claude-skill-v1.0.0-rc1.zip`
+
+`SHA256SUMS.txt` is the authoritative integrity manifest. The full package
+and both standalone Skill packages passed post-extraction audit; no matched
+private path, secret-shaped value or PHI/PII header was emitted.
+
 ## Status summary
 
-- PASS: 12 local gates
+- PASS: 13 local gates
 - WARN: 4 limitations (optional runtimes, synthetic-only scope, maintainer
   metadata, release-candidate status)
 - FAIL: 0
 - BLOCKED: 0 at the local candidate gate
-- UNVERIFIED: 2 (GitHub Actions execution and package at the initial checkpoint)
+- UNVERIFIED: 1 (GitHub Actions execution after the first push)
 - DEFERRED: real-data full-cohort analysis, deep Zotero/Obsidian integration,
   cloud deployment, large raw-data download and unverified platform support
 
@@ -100,6 +113,6 @@ The repository uses the name `medical-research-workstation`; the citation file
 uses a contributor identity rather than inventing a personal institutional
 affiliation.
 
-The package artifacts and SHA-256 manifest must be generated and inspected
-before the GitHub release is created. GitHub Actions must be checked after the
-first push; a failing remote check remains a release blocker.
+The package artifacts and SHA-256 manifest have been generated and inspected.
+GitHub Actions must be checked after the first push; a failing remote check
+remains a release blocker before the GitHub release is created.

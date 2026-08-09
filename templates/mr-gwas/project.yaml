@@ -1,0 +1,17 @@
+schema_version: v5
+template_id: mr-gwas
+project_id: replace-with-project-id
+title: Replace with MR/GWAS question
+study_type: mr-gwas
+privacy_level: restricted
+data_policy: {raw_immutable: true, identifiers_allowed: false}
+statistics:
+  statistical_unit: variant_allele_or_instrument
+  estimand: VERIFY_REQUIRED
+  exposure: VERIFY_REQUIRED
+  outcome: VERIFY_REQUIRED
+  ancestry: VERIFY_REQUIRED
+  instrument_selection: VERIFY_REQUIRED
+  pleiotropy_sensitivity: VERIFY_REQUIRED
+evidence_policy: {verified_source_required_for_formal_citation: true}
+provenance: {required: true, manifest: provenance/run-manifest.yaml, hash_algorithm: sha256}

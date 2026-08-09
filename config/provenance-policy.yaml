@@ -1,0 +1,26 @@
+schema_version: 1
+required_run_fields:
+  - run_id
+  - project_id
+  - timestamp
+  - git_commit
+  - working_tree_status
+  - input_hashes
+  - scripts
+  - command
+  - runtime_versions
+  - lock_hashes
+  - seed
+  - outputs
+  - output_hashes
+  - warnings
+  - errors
+  - duration_seconds
+rules:
+  hash_algorithm: sha256
+  raw_data_manifest_required: true
+  derived_data_parent_hash_required: true
+  output_manifest_required_for_formal_analysis: true
+  no_secret_values: true
+  no_phi_values: true
+  reproduce_must_be_safe_and_recorded: true

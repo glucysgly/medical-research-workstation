@@ -1,0 +1,13 @@
+schema_version: v5
+state: planning
+last_updated: VERIFY_REQUIRED
+owner: VERIFY_REQUIRED
+milestone: protocol_setup
+data_readiness: not_started
+analysis_readiness: blocked_until_protocol_locked
+evidence_readiness: not_started
+open_risks:
+  - confirm ethics and consent basis
+  - lock statistical unit and primary estimand
+  - verify source metadata before citation
+last_run_id: null

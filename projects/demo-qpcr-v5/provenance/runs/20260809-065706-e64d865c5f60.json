@@ -1,0 +1,13 @@
+{
+  "command": "qc",
+  "created_at": "2026-08-09T06:57:06Z",
+  "input_manifest": "data/manifests/raw-manifest.json",
+  "input_manifest_sha256": "e64d865c5f6025ebeb9026447690158970a998c4f4cefc0e65df4d277dff5935",
+  "outputs": [
+    "data/manifests/qc-report.json"
+  ],
+  "project_id": "demo-qpcr-v5",
+  "run_id": "20260809-065706-e64d865c5f60",
+  "schema_version": 1,
+  "status": "pass"
+}

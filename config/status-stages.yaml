@@ -1,0 +1,22 @@
+schema_version: 1
+stages:
+  - IDEA
+  - QUESTION
+  - LITERATURE
+  - PROTOCOL
+  - DATA_INTAKE
+  - DATA_QC
+  - ANALYSIS_PLAN
+  - ANALYSIS
+  - RESULTS_QC
+  - INTERPRETATION
+  - MANUSCRIPT
+  - MANUSCRIPT_QC
+  - SUBMISSION
+  - REVISION
+  - ARCHIVE
+rules:
+  allow_backtracking: true
+  allow_skip: true
+  require_reason_for_backtracking_or_skip: true
+  require_status_history: true

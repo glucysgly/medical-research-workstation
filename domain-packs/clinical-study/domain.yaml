@@ -1,0 +1,12 @@
+schema_version: v5
+domain_id: clinical-study
+display_name: Clinical study
+task_codes: [RESEARCH, DATA]
+template: templates/clinical-study
+primary_skill: nature-academic-search
+required_inputs: [project.yaml, status.yaml, protocol, literature, data/raw]
+protected_fields: [privacy_level, statistical_unit, primary_estimand, primary_outcome, eligibility]
+outputs: [data/derived, results/figures, results/tables, reports, provenance]
+evidence_policy: verified_source_required
+privacy_default: restricted
+raw_policy: immutable

@@ -1,0 +1,4 @@
+synthetic,sample_id,group,ct_target,ct_reference,technical_replicate
+true,SYN_001,control,22.1,18.0,1
+true,SYN_001,control,22.3,18.1,2
+true,SYN_002,intervention,20.4,17.9,1

@@ -1,0 +1,14 @@
+# Skill routing
+
+Resolve one primary route from the domain pack. Use supporting skills only when
+the primary route requires them and record the reason in provenance.
+
+| Task | Route | Minimum gate |
+|---|---|---|
+| clinical study | clinical-study + `nature-academic-search` | ethics, unit, estimand |
+| qPCR | qpcr-study + `nature-data` | biological replicate, QC, normalization |
+| review/meta | systematic-review-meta + `nature-academic-search` | search, extraction, RoB |
+| MR/GWAS | mr-gwas + `research` | dataset release, harmonization, assumptions |
+| public omics | public-omics + `nature-data` | accession, metadata, batch/QC |
+| exploratory | exploratory-analysis + `research` | branch inventory, confirmation path |
+| scRNA/NGS/peaks/variants | matching optional route pack | checksums, reference, QC, unit |

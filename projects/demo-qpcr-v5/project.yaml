@@ -1,0 +1,12 @@
+schema_version: 1
+project_id: demo-qpcr-v5
+title: Synthetic qPCR v5 demo
+template: qpcr-study
+privacy_level: restricted
+raw_data_immutable: true
+created_at: "2026-08-09T06:57:05Z"
+source_of_truth:
+  - project.yaml
+  - status.yaml
+  - data/manifests
+  - provenance

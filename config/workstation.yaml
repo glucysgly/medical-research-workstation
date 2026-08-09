@@ -1,0 +1,37 @@
+schema_version: 1
+workstation:
+  id: medical-research-workstation
+  prompt_version: public-v1.0.0-rc1
+  internal_baseline: v5.1
+  baseline_mode: portable-public-candidate
+  automation_enabled: false
+  default_privacy_level: restricted
+  raw_data_immutable: true
+  deterministic_first: true
+  minimal_context: true
+  no_fabricated_science: true
+paths:
+  project_root: .
+  registry: registry
+  research_capability_view: registry/RESEARCH_CAPABILITY_VIEW.csv
+  logs: logs
+  cache: cache
+  evolution: evolution
+integrations:
+  global_capability_index: null
+  zotero:
+    mode: read_first
+    allow_write: false
+    allow_full_library_scan: false
+    status: optional_not_configured
+    local_adapter: optional
+  obsidian:
+    mode: local_filesystem_first
+    restructure_vault: false
+    vault_path: null
+    dedicated_research_area: null
+    allow_project_note_creation: false
+  external_upload:
+    default: blocked
+  git_push:
+    default: explicit_user_request_only

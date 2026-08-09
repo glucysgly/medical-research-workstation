@@ -1,0 +1,88 @@
+schema_version: 1
+selection:
+  default_primary_count: 1
+  default_supporting_max: 2
+  prefer_deterministic_tools: true
+  load_all_skills: false
+skills:
+  - name: research-router
+    category: research-orchestration
+    skill_ref: nature-academic-search
+    triggers: [route, project resolve, choose skill, workflow]
+    summary: Classify intent, resolve project, select primary skill, risk gate and QA.
+    priority: 100
+  - name: literature-evidence
+    category: literature-evidence
+    skill_ref: nature-academic-search
+    triggers: [literature, evidence, guideline, paper, reference, DOI, PMID]
+    summary: Search, verify and structure medical evidence with source provenance.
+    priority: 95
+  - name: data-qc
+    category: data-engineering-quality
+    skill_ref: data-analytics:validate-data
+    triggers: [data check, missing, duplicate, unit, outlier, QC]
+    summary: Deterministic input and data quality checks without silently changing data.
+    priority: 95
+  - name: qpcr-analysis
+    category: molecular-lab-qpcr
+    skill_ref: data-analytics:validate-data
+    triggers: [qPCR, Ct, delta Ct, ddCt, fold change, technical replicate]
+    summary: qPCR replicate-aware QC and analysis planning under MIQE safeguards.
+    priority: 95
+  - name: statistical-analysis
+    category: statistics-methodology
+    skill_ref: research
+    triggers: [statistics, regression, survival, effect size, confidence interval]
+    summary: Choose and record analysis methods; report effect size, uncertainty and limitations.
+    priority: 90
+  - name: systematic-review-meta
+    category: systematic-review-meta-analysis
+    skill_ref: nature-academic-search
+    triggers: [systematic review, meta-analysis, PRISMA, screening, risk of bias]
+    summary: Evidence retrieval, screening, extraction, bias, heterogeneity and synthesis.
+    priority: 95
+  - name: mr-gwas
+    category: genetics-gwas-mr
+    skill_ref: research
+    triggers: [MR, Mendelian randomization, GWAS, LD, harmonization, pleiotropy]
+    summary: MR/GWAS design and QC with primary/secondary/exploratory separation.
+    priority: 95
+  - name: public-omics
+    category: omics-bioinformatics
+    skill_ref: ngs-analysis:ngs-analysis-router
+    triggers: [GEO, ArrayExpress, transcriptome, RNA-seq, public omics]
+    summary: Dataset suitability, annotation, QC, analysis and validation for public omics.
+    priority: 90
+  - name: scrna-qc
+    category: single-cell-omics
+    skill_ref: ngs-analysis:scrna-seq-qc
+    triggers: [single-cell, scRNA-seq, scRNA, UMAP, doublet, scDblFinder, donor pseudobulk]
+    summary: Data-driven single-cell QC, partition-aware scDblFinder, conservative annotation, embeddings and donor-aware inference.
+    priority: 100
+  - name: scientific-writing
+    category: scientific-writing
+    skill_ref: nature-writing
+    triggers: [manuscript, abstract, results, methods, discussion, paper]
+    summary: Write from verified results and citation evidence rather than desired conclusions.
+    priority: 90
+  - name: manuscript-qc
+    category: publication-compliance
+    skill_ref: nature-reviewer
+    triggers: [manuscript QC, inconsistency, table, figure, submission, revision]
+    summary: Check numerical, citation, figure/table and reporting consistency.
+    priority: 95
+  - name: reproducibility
+    category: reproducibility-provenance
+    skill_ref: superpowers:verification-before-completion
+    triggers: [reproduce, provenance, lockfile, environment, render]
+    summary: Record inputs, commands, environments, hashes and outputs for reproduction.
+    priority: 90
+  - name: research-integrity
+    category: research-integrity-privacy
+    skill_ref: security-and-hardening
+    triggers: [PHI, PII, secret, privacy, citation integrity, upload]
+    summary: Guard raw data, secrets, privacy, citations and human decision gates.
+    priority: 100
+domain_packs:
+  core: [clinical-observational, qpcr, systematic-review-meta, mr-gwas, public-omics]
+  optional: [scrna, ngs, atac-chip, variant-calling]

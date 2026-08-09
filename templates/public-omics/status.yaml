@@ -1,0 +1,8 @@
+schema_version: v5
+state: planning
+last_updated: VERIFY_REQUIRED
+milestone: dataset_verification
+data_readiness: not_started
+analysis_readiness: blocked_until_metadata_and_qc_verified
+open_risks: [verify accession and release, confirm sample unit, assess batch/confounding, define validation]
+last_run_id: null

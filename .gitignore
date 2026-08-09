@@ -1,0 +1,36 @@
+# Generated indexes, logs, caches and local runtime state
+cache/
+logs/
+backups/
+releases/
+registry/projects.sqlite3
+evolution/telemetry/*.jsonl
+evolution/feedback/*.jsonl
+evolution/retrospectives/generated/
+
+# Local environments and secrets
+.venv/
+R/library/
+.env
+.env.*
+*.secret
+*.token
+*.pem
+*.key
+*.p12
+**/config.toml
+zotero-library.json
+*.sqlite
+*.sqlite3
+*.db
+
+# Research data: keep manifests, never raw data by default
+**/data/raw/**
+**/data/derived/**
+**/provenance/run-*.json
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

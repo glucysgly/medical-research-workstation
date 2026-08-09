@@ -1,0 +1,15 @@
+schema_version: v5
+template_id: systematic-review-meta
+project_id: replace-with-project-id
+title: Replace with review title
+study_type: systematic-review-meta
+privacy_level: restricted
+data_policy: {raw_immutable: true, identifiers_allowed: false}
+statistics:
+  statistical_unit: study_estimate
+  effect_measure: VERIFY_REQUIRED
+  heterogeneity_model: VERIFY_REQUIRED
+  primary_outcome: VERIFY_REQUIRED
+  multiplicity_plan: VERIFY_REQUIRED
+evidence_policy: {verified_source_required_for_formal_citation: true, unknown_status: VERIFY_REQUIRED}
+provenance: {required: true, manifest: provenance/run-manifest.yaml, hash_algorithm: sha256}

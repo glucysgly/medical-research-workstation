@@ -1,0 +1,8 @@
+schema_version: v5
+state: planning
+last_updated: VERIFY_REQUIRED
+milestone: question_definition
+data_readiness: not_started
+analysis_readiness: blocked_until_unit_and_data_source_verified
+open_risks: [define exploratory unit, enumerate analysis branches, plan confirmation]
+last_run_id: null

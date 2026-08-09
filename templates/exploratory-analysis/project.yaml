@@ -1,0 +1,15 @@
+schema_version: v5
+template_id: exploratory-analysis
+project_id: replace-with-project-id
+title: Replace with exploratory question
+study_type: exploratory-analysis
+privacy_level: restricted
+data_policy: {raw_immutable: true, identifiers_allowed: false}
+statistics:
+  statistical_unit: VERIFY_REQUIRED
+  estimand: exploratory_association_only_until_confirmed
+  primary_outcome: not_applicable_exploratory
+  multiple_testing: report_all_tests
+  confirmatory_follow_up: VERIFY_REQUIRED
+evidence_policy: {verified_source_required_for_formal_citation: true, exploratory_claims_require_label: true}
+provenance: {required: true, manifest: provenance/run-manifest.yaml, hash_algorithm: sha256}

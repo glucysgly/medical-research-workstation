@@ -1,0 +1,12 @@
+schema_version: v5
+domain_id: systematic-review-meta
+display_name: Systematic review and meta-analysis
+task_codes: [RESEARCH, DATA]
+template: templates/systematic-review-meta
+primary_skill: nature-academic-search
+required_inputs: [project.yaml, status.yaml, protocol, literature]
+protected_fields: [statistical_unit, effect_measure, heterogeneity_model, eligibility]
+outputs: [results/figures, results/tables, manuscript, provenance]
+evidence_policy: verified_source_required
+privacy_default: restricted
+raw_policy: immutable

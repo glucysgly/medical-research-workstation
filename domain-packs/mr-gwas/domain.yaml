@@ -1,0 +1,12 @@
+schema_version: v5
+domain_id: mr-gwas
+display_name: Mendelian randomization and GWAS
+task_codes: [BIO, DATA, RESEARCH]
+template: templates/mr-gwas
+primary_skill: research
+required_inputs: [project.yaml, status.yaml, protocol, literature, data/raw]
+protected_fields: [statistical_unit, estimand, exposure, outcome, ancestry, instrument_selection]
+outputs: [data/derived, results/figures, results/tables, reports, provenance]
+evidence_policy: verified_source_required
+privacy_default: restricted
+raw_policy: immutable

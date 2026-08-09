@@ -1,0 +1,14 @@
+schema_version: v5
+project_id: demo-synthetic-clinical
+title: Synthetic intervention response demo
+study_type: clinical-study
+privacy_level: restricted
+synthetic_data: true
+data_policy: {raw_immutable: true, identifiers_allowed: false}
+statistics:
+  statistical_unit: synthetic_participant
+  primary_estimand: mean_change_treatment_minus_control
+  primary_outcome: change_score_units
+  analysis_population: all_synthetic_records
+evidence_policy: {verified_source_required_for_formal_citation: true}
+provenance: {required: true, manifest: provenance/run-manifest.yaml, hash_algorithm: sha256}

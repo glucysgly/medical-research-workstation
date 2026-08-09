@@ -1,0 +1,23 @@
+schema_version: 1
+default_enabled: false
+default_mode: report_only
+allowed_templates:
+  - literature-watch
+  - project-health
+  - reproducibility-check
+  - submission-watch
+  - weekly-research-housekeeping
+  - monthly-research-retrospective
+  - quarterly-architecture-review
+gates:
+  external_write: human_approval
+  restricted_data: blocked
+  methodology_change: blocked
+  citation_change: human_approval
+  schedule_enablement: human_approval
+cri:
+  auto_promote: false
+  protected_core: true
+  weekly_max_changes: 0
+  monthly_max_proposals: 5
+  monthly_max_promotions: 3

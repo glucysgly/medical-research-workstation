@@ -1,0 +1,17 @@
+schema_version: 1
+core_version: 1.0.0
+status: protected
+rules:
+  raw_data: immutable_by_default
+  secrets_and_phi: never_emit
+  biological_replicate_unit: explicit_required
+  cells_as_independent_replicates: prohibited_by_default
+  provenance: required_for_formal_outputs
+  reproduction: required_before_completion_claim
+  evidence: source_and_uncertainty_required
+  fabricated_science: prohibited
+  public_fixtures: synthetic_or_redistributable_only
+  final_submission: human_gate_required
+adapters:
+  codex: skills/codex/medical-research-workstation/SKILL.md
+  claude: skills/claude/medical-research-workstation/SKILL.md

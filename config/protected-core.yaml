@@ -1,0 +1,18 @@
+schema_version: 1
+protected:
+  research_integrity: true
+  raw_data_immutability: true
+  privacy_policy: true
+  citation_integrity: true
+  human_decision_gates: true
+  preregistration_integrity: true
+  statistical_unit_rules: true
+  no_method_change_for_significance: true
+  no_automatic_outlier_deletion: true
+  no_public_upload_of_restricted_data: true
+  no_secret_output: true
+  donor_is_inferential_unit: true
+  cells_are_not_independent_biological_replicates: true
+promotion:
+  auto_promote: false
+  required_permission: human_approval

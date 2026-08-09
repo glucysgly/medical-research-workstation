@@ -1,0 +1,16 @@
+schema_version: v5
+template_id: public-omics
+project_id: replace-with-project-id
+title: Replace with public omics question
+study_type: public-omics
+privacy_level: restricted
+data_policy: {raw_immutable: true, identifiers_allowed: false, public_access_requires_verification: true}
+statistics:
+  statistical_unit: sample
+  primary_contrast: VERIFY_REQUIRED
+  normalization: VERIFY_REQUIRED
+  batch_strategy: VERIFY_REQUIRED
+  multiple_testing: VERIFY_REQUIRED
+  validation_path: VERIFY_REQUIRED
+evidence_policy: {verified_source_required_for_formal_citation: true}
+provenance: {required: true, manifest: provenance/run-manifest.yaml, hash_algorithm: sha256}

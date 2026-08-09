@@ -1,0 +1,32 @@
+schema_version: 1
+items:
+  - name: python-standard-library
+    source: https://www.python.org/
+    version_policy: "python >= 3.10"
+    license: Python-2.0
+    decision: KEEP_AS_RUNTIME_DEPENDENCY
+    bundled: false
+  - name: git
+    source: https://git-scm.com/
+    version_policy: "supported Git installation"
+    license: GPL-2.0-only
+    decision: KEEP_AS_RUNTIME_DEPENDENCY
+    bundled: false
+  - name: github-actions-checkout
+    source: https://github.com/actions/checkout
+    version_policy: v4
+    license: MIT
+    decision: KEEP_AS_DEPENDENCY_ONLY
+    bundled: false
+  - name: github-actions-setup-python
+    source: https://github.com/actions/setup-python
+    version_policy: v5
+    license: MIT
+    decision: KEEP_AS_DEPENDENCY_ONLY
+    bundled: false
+  - name: local-skills-mcp-cli-collections
+    source: "<configured locally by each user>"
+    version_policy: user-managed
+    license: UNKNOWN
+    decision: EXCLUDE_FROM_PUBLIC_REPO
+    bundled: false

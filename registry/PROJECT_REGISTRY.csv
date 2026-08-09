@@ -1,0 +1,3 @@
+id,title,template,privacy_level,status,path
+demo-qpcr-v1,Synthetic qPCR example,qpcr-study,synthetic,DATA_QC,projects/demo-qpcr-v5
+demo-medical-research-synthetic,Synthetic clinical workflow example,clinical-study,synthetic,IDEA,demo-medical-research

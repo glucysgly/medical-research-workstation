@@ -1,0 +1,29 @@
+schema_version: 1
+workstation:
+  internal_baseline: v5.1
+  public_candidate: v1.0.0-rc1
+  source_path: "<local-only-redacted>"
+  verified_at: "2026-08-09"
+platforms:
+  windows: {operational: locally_verified, public_support: conservative}
+  wsl2: {operational: internal_only, public_support: optional}
+  linux: {operational: unverified, public_support: unverified}
+  macos: {operational: unverified, public_support: unverified}
+capabilities:
+  doctor: {operational: locally_verified, research_ready: control_plane_only}
+  router: {operational: locally_verified, research_ready: requires_domain_input}
+  provenance: {operational: locally_verified, research_ready: requires_project_data}
+  reproduce: {operational: locally_verified, research_ready: requires_project_data}
+  python: {operational: locally_verified, research_ready: optional_runtime_boundary}
+  r: {operational: internal_only, research_ready: unverified_public}
+research_domains:
+  clinical_observational: {status: contract_and_fixture_only}
+  qpcr: {status: contract_and_fixture_only}
+  systematic_review_meta_analysis: {status: contract_and_fixture_only}
+  mr_gwas: {status: contract_and_fixture_only}
+  public_omics: {status: contract_and_fixture_only}
+  scrna_seq: {status: contract_and_fixture_only}
+limitations:
+  - No real patient or research data is included.
+  - Optional external tools and database Skills require separate local verification.
+  - The public candidate is not a clinical or publication decision system.

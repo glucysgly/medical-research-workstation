@@ -3,6 +3,7 @@ cache/
 logs/
 backups/
 releases/
+dist/
 registry/projects.sqlite3
 evolution/telemetry/*.jsonl
 evolution/feedback/*.jsonl

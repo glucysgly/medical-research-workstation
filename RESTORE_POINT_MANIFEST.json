@@ -1,0 +1,6 @@
+{
+  "created": "2026-08-09",
+  "backup_dir": "backups/initial-20260809",
+  "secret_values_emitted": false,
+  "note": "See backup files for local recovery; do not copy them to public locations."
+}

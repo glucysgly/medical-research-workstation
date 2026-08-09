@@ -1,0 +1,14 @@
+schema_version: v5
+project_id: demo-qpcr-v5
+status: DATA_QC
+updated_at: "2026-08-09T07:01:23Z"
+status_history:
+  - status: planned
+    reason: project created
+    at: "2026-08-09T06:57:05Z"
+  - status: DATA_QC
+    from: planned
+    reason: v5 status migration after core upgrade
+    at: "2026-08-09T07:01:23Z"
+stage: DATA_QC
+state: data_qc

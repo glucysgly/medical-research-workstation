@@ -1,0 +1,10 @@
+schema_version: v5
+domain_id: atac-chip
+display_name: ATAC/ChIP/CUT&RUN peaks
+task_codes: [BIO, DATA]
+template: templates/public-omics
+primary_skill: ngs-analysis:ngs-epigenomics-peaks
+required_inputs: [project.yaml, status.yaml, protocol, data/raw]
+protected_fields: [statistical_unit, reference_genome, control_definition, peak_threshold]
+privacy_default: restricted
+raw_policy: immutable

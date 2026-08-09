@@ -1,0 +1,33 @@
+{
+  "command": "researchctl qc",
+  "created_at": "2026-08-09T07:01:23Z",
+  "duration_seconds": 0.011218,
+  "errors": [],
+  "git_commit": null,
+  "input_hashes": {
+    "data/manifests/raw-manifest.json": "ee5002db83978e0eaec5b6b461fbf4b69e347f57afe45992a35f0441461dab10"
+  },
+  "input_manifest": "data/manifests/raw-manifest.json",
+  "input_manifest_sha256": "ee5002db83978e0eaec5b6b461fbf4b69e347f57afe45992a35f0441461dab10",
+  "lock_hashes": {},
+  "output_hashes": {
+    "data/manifests/qc-report.json": "13666f7b919f36968ffdb658621e530c931897583e9d2034698a02f16b246635"
+  },
+  "outputs": [
+    "data/manifests/qc-report.json"
+  ],
+  "project_id": "demo-qpcr-v5",
+  "run_id": "20260809-070123-ee5002db8397",
+  "runtime_versions": {
+    "python": "3.14.7"
+  },
+  "schema_version": "v5",
+  "scripts": [
+    "scripts/researchctl.py"
+  ],
+  "seed": null,
+  "status": "pass",
+  "timestamp": "2026-08-09T07:01:23Z",
+  "warnings": [],
+  "working_tree_status": "not_git_repository"
+}

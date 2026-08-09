@@ -1,0 +1,10 @@
+schema_version: v5
+domain_id: scrna-seq
+display_name: Single-cell RNA-seq
+task_codes: [BIO, DATA]
+template: templates/public-omics
+primary_skill: ngs-analysis:scrna-seq-qc
+required_inputs: [project.yaml, status.yaml, protocol, data/raw]
+protected_fields: [statistical_unit, qc_thresholds, batch_strategy, annotation_evidence]
+privacy_default: restricted
+raw_policy: immutable

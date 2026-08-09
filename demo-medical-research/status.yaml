@@ -1,0 +1,9 @@
+schema_version: v5
+state: demo_complete
+last_updated: 2026-08-09
+milestone: static_demo
+data_readiness: synthetic_verified
+analysis_readiness: synthetic_only
+evidence_readiness: no_formal_citations
+open_risks: [replace synthetic data and protocol before any real study]
+last_run_id: demo-static-check

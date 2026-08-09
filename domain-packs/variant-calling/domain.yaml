@@ -1,0 +1,10 @@
+schema_version: v5
+domain_id: variant-calling
+display_name: Variant calling
+task_codes: [BIO, DATA]
+template: templates/public-omics
+primary_skill: ngs-analysis:ngs-dna-variant-calling
+required_inputs: [project.yaml, status.yaml, data/raw]
+protected_fields: [reference_build, sample_relationship, caller_version, filter_policy]
+privacy_default: restricted
+raw_policy: immutable

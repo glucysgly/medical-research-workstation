@@ -1,0 +1,15 @@
+domain,capability,source,status,decision,reason,verification_gate,priority
+baseline,Windows AI/dev workstation,C:\AI-Workstation,observed_healthy,reuse,Existing control plane passes its Windows checks,researchctl doctor and existing doctor,P0
+baseline,WSL2 bridge,C:\AI-Workstation\bin\wsl-run.ps1,operational_after_repair,reuse_existing,Hypervisor launch type was repaired and post-restart checks passed,controlled before_after doctor,P1
+index,global capability index,C:\Users\nmls\Documents\Codex\2026-08-09\zhe\outputs\tooling-capability-index.md,observed_present,derive_view,Global index already contains 246 Skills 355 MCP tools 101 CLI entries,hash and source-path check,P0
+literature,life-science and academic search Skills,global capability index,available,reuse_and_wrap,Use concrete research Skills selected from the global index,source and citation audit,P0
+literature,Zotero integration,local adapter plus Zotero capability,not_live_verified,wrap_read_first,No write or full-library scan by default,health and metadata roundtrip,P1
+notes,Obsidian integration,local filesystem policy,not_live_verified,wrap_local_first,Do not restructure vault or require GUI,filesystem path and note provenance,P1
+runtime,Python/R/Quarto/TinyTeX,Windows PATH and fixed paths,observed_available,reuse,Existing deterministic document and analysis runtimes are present,version snapshot and render check,P0
+runtime,public omics and NGS tools,WSL and NGS Skills,available_after_repair,adapt_existing,WSL doctor and project bridge smoke passed,WSL doctor and small fixture run,P1
+project,portable research project model,this project scaffold,implemented,implement,Needed to connect natural language tasks to verifiable artifacts,template and acceptance tests,P0
+quality,data QC and provenance,this project scaffold plus Python,implemented,implement,Needed for auditability and safe raw-data handling,fixture QC and hash checks,P0
+quality,manuscript QC,Nature/document Skills plus deterministic checks,implemented,implement,Need numerical and citation consistency checks,synthetic inconsistency fixture,P1
+cri,feedback and optimization,v5 CRI rules,implemented_review_first,implement_review_first,Protected core cannot auto-promote,proposal eval rollback test,P1
+automation,scheduled research reviews,v5 automation rules,disabled,implement_report_only,Default is disabled and proposal-first,config validation and dry run,P2
+security,privacy and human gates,v5 protected core,implemented,implement_and_protect,Clinical data and methods require explicit gates,privacy fixture and policy audit,P0

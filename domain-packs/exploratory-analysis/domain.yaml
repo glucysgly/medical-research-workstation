@@ -1,0 +1,12 @@
+schema_version: v5
+domain_id: exploratory-analysis
+display_name: Exploratory analysis
+task_codes: [RESEARCH, BIO, DATA]
+template: templates/exploratory-analysis
+primary_skill: research
+required_inputs: [project.yaml, status.yaml, protocol, data/raw]
+protected_fields: [statistical_unit, estimand, confirmatory_follow_up]
+outputs: [data/derived, results/figures, results/tables, reports, retrospective, provenance]
+evidence_policy: verified_source_required
+privacy_default: restricted
+raw_policy: immutable

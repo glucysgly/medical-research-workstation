@@ -1,0 +1,27 @@
+schema_version: v5
+template_id: clinical-study
+project_id: replace-with-project-id
+title: Replace with study title
+study_type: clinical-study
+privacy_level: restricted
+ethics:
+  status: VERIFY_REQUIRED
+  approval_id: null
+  consent_basis: VERIFY_REQUIRED
+data_policy:
+  raw_immutable: true
+  identifiers_allowed: false
+  allowed_locations: [data/raw, data/derived]
+statistics:
+  statistical_unit: participant
+  primary_estimand: VERIFY_REQUIRED
+  primary_outcome: VERIFY_REQUIRED
+  analysis_population: VERIFY_REQUIRED
+evidence_policy:
+  verified_source_required_for_formal_citation: true
+  citation_status_for_unknown: VERIFY_REQUIRED
+provenance:
+  required: true
+  manifest: provenance/run-manifest.yaml
+  hash_algorithm: sha256
+  run_id_required: true

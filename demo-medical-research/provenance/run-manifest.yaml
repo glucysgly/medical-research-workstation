@@ -1,0 +1,13 @@
+schema_version: v5
+run_id: demo-static-check
+synthetic_only: true
+inputs:
+  - path: data/raw/synthetic_outcomes.csv
+    sha256: 03B85B1684AFCC04DD277A047406F7F7E55854ECD44A22C203C9214262F7A353
+commands:
+  - python analysis/run_demo.py
+software: [Python standard library]
+outputs: [reports/README.md]
+warnings: [not clinical evidence; no formal citations]
+evidence: []
+hashes: [03B85B1684AFCC04DD277A047406F7F7E55854ECD44A22C203C9214262F7A353]

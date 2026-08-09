@@ -1,0 +1,23 @@
+schema_version: v5
+state: data_qc
+last_updated: VERIFY_REQUIRED
+milestone: assay_setup
+data_readiness: not_started
+analysis_readiness: blocked_until_qc_and_unit_locked
+open_risks:
+  - confirm biological versus technical replicate
+  - confirm reference gene
+  - verify assay efficiency
+last_run_id: null
+project_id: actual-template-v5
+status: DATA_QC
+stage: DATA_QC
+updated_at: "2026-08-09T07:07:09Z"
+status_history:
+  - status: IDEA
+    reason: project created
+    at: "2026-08-09T07:07:00Z"
+  - status: DATA_QC
+    from: IDEA
+    reason: template acceptance reached data QC
+    at: "2026-08-09T07:07:09Z"

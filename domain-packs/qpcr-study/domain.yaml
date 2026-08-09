@@ -1,0 +1,12 @@
+schema_version: v5
+domain_id: qpcr-study
+display_name: qPCR study
+task_codes: [BIO, DATA, RESEARCH]
+template: templates/qpcr-study
+primary_skill: nature-data
+required_inputs: [project.yaml, status.yaml, protocol, data/raw]
+protected_fields: [statistical_unit, reference_gene, normalization, primary_outcome]
+outputs: [data/derived, results/figures, results/tables, reports, provenance]
+evidence_policy: verified_source_required
+privacy_default: restricted
+raw_policy: immutable

@@ -1,0 +1,31 @@
+schema_version: 1
+workstation:
+  id: medical-research-workstation
+  prompt_version: v5
+  baseline_mode: import_and_delta
+  automation_enabled: false
+  default_privacy_level: restricted
+  raw_data_immutable: true
+  deterministic_first: true
+  minimal_context: true
+  no_fabricated_science: true
+paths:
+  project_root: .
+  registry: registry
+  research_capability_view: registry/RESEARCH_CAPABILITY_VIEW.csv
+  logs: logs
+  cache: cache
+  evolution: evolution
+integrations:
+  global_capability_index: C:/Users/nmls/Documents/Codex/2026-08-09/zhe/outputs/tooling-capability-index.md
+  zotero:
+    mode: read_first
+    allow_write: false
+    allow_full_library_scan: false
+  obsidian:
+    mode: local_filesystem_first
+    restructure_vault: false
+  external_upload:
+    default: blocked
+  git_push:
+    default: blocked

@@ -1,0 +1,12 @@
+schema_version: v5
+domain_id: public-omics
+display_name: Public omics
+task_codes: [BIO, DATA, RESEARCH]
+template: templates/public-omics
+primary_skill: nature-data
+required_inputs: [project.yaml, status.yaml, protocol, literature, data/raw]
+protected_fields: [statistical_unit, primary_contrast, normalization, batch_strategy, multiple_testing]
+outputs: [data/derived, results/figures, results/tables, reports, provenance]
+evidence_policy: verified_source_required
+privacy_default: restricted
+raw_policy: immutable

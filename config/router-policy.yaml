@@ -1,0 +1,30 @@
+schema_version: 1
+task_codes: [RESEARCH, BIO, DATA, DOC, DEV, WEB, DESIGN, SYSTEM, OPS, CRI]
+selection:
+  source_of_truth: C:/Users/nmls/Documents/Codex/2026-08-09/zhe/outputs/tooling-capability-index.md
+  derived_view: registry/RESEARCH_CAPABILITY_VIEW.csv
+  primary_skill_count: 1
+  supporting_skill_max: 2
+  prefer_most_specific: true
+  load_all_skills: false
+execution:
+  windows:
+    - Codex Desktop
+    - Office
+    - Zotero
+    - Obsidian
+    - PDF/PPT/Word/Excel/LaTeX delivery
+  wsl:
+    - Linux-first bioinformatics
+    - Docker
+    - micromamba bio-base
+    - reproducible R/Python batch
+    - many-small-file workloads
+  wsl_health_gate:
+    required: true
+    evidence: WSL_REPAIR_AFTER.md
+external:
+  upload_restricted_data: blocked
+  git_push: manual_only
+  paid_service: manual_only
+  zotero_write: disabled_by_default

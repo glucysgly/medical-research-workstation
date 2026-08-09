@@ -1,0 +1,8 @@
+schema_version: v5
+state: planning
+last_updated: VERIFY_REQUIRED
+milestone: assay_setup
+data_readiness: not_started
+analysis_readiness: blocked_until_qc_and_unit_locked
+open_risks: [confirm biological versus technical replicate, confirm reference gene, verify assay efficiency]
+last_run_id: null

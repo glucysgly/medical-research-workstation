@@ -1,0 +1,10 @@
+schema_version: v5
+domain_id: ngs
+display_name: General NGS
+task_codes: [BIO, DATA, DEV]
+template: templates/public-omics
+primary_skill: ngs-analysis:ngs-analysis-router
+required_inputs: [project.yaml, status.yaml, data/raw]
+protected_fields: [reference_version, qc_thresholds, statistical_unit]
+privacy_default: restricted
+raw_policy: immutable

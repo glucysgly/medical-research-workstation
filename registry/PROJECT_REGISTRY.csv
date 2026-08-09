@@ -1,0 +1,4 @@
+id,title,template,privacy_level,status,path
+actual-template-v5,Actual v5 template acceptance,qpcr-study,restricted,IDEA,D:\Users\nmls\Documents\CodexProjects\medical-research-workstation\projects\actual-template-v5
+demo-qpcr-v5,Synthetic qPCR v5 demo,qpcr-study,restricted,DATA_QC,D:\Users\nmls\Documents\CodexProjects\medical-research-workstation\projects\demo-qpcr-v5
+demo-synthetic-clinical,Synthetic intervention response demo,unknown,restricted,unknown,D:\Users\nmls\Documents\CodexProjects\medical-research-workstation\demo-medical-research

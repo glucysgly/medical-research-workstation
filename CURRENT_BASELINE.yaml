@@ -1,0 +1,74 @@
+schema_version: 1
+snapshot:
+  captured_at: 2026-08-09T14:45:00+08:00
+  active_prompt_version: v5
+  source_prompt_sha256: 63914F55D8075A71063FF2B550BDBF4CBD8B1CB0AF5261EB6C74BDCA651F2DBB
+  previous_prompt_status: superseded_historical_only
+sources:
+  existing_workstation_root: C:/AI-Workstation
+  existing_workstation_report: C:/AI-Workstation/setup/reports/FINAL-REPORT.md
+  existing_doctor: C:/AI-Workstation/bin/doctor.ps1
+  existing_wsl_bridge: C:/AI-Workstation/bin/wsl-run.ps1
+  global_capability_index: C:/Users/nmls/Documents/Codex/2026-08-09/zhe/outputs/tooling-capability-index.md
+  capability_index_counts:
+    local_skills: 246
+    mcp_tools: 355
+    cli_hub_entries: 101
+  import_policy: derived_research_view_only
+codex_projects_compatibility:
+  canonical_root: D:/Users/nmls/Documents/CodexProjects
+  c_path: C:/Users/nmls/Documents/CodexProjects
+  c_path_observed: normal_directory_not_junction
+  c_path_preexisting_project: Auto-Research-Skills
+  c_and_d_project_counts_differ: true
+  junction_conversion: deferred_migration_gate
+  reason: protect_preexisting_projects_until_copy_hash_and_cutover_are_explicitly_approved
+windows:
+  os: Windows 11 Pro
+  build: 26200
+  status: healthy_for_research_control_plane
+  tools:
+    git: 2.55.0.windows.3
+    gh: 2.97.0
+    python: 3.14.7
+    node: 24.19.0
+    npm: 11.17.0
+    uv: 0.12.1
+    quarto: 1.10.18
+    pandoc: 3.10.1
+    typst: 0.15.1
+    ripgrep: 15.2.0
+    latexmk: present
+    rscript: present_at_fixed_path
+    julia: 1.12.6
+    tinytex: present
+  gui_state:
+    zotero_process: not_running_during_snapshot
+    obsidian_process: not_running_during_snapshot
+    office_processes: not_running_during_snapshot
+wsl:
+  distribution_listing: Ubuntu Stopped 2_when_idle
+  live_status: operational
+  hypervisor_present: true
+  hypervisor_launch_type: auto
+  bridge_status: passed
+  observed_error_class: resolved
+  historical_report_conflict: resolved_by_live_post_restart_check
+  bridge_regression: 17_of_17_pass
+  linux_doctor: 0_failures
+  action: reuse_existing_linux_workloads
+research_layer:
+  project_root: D:/Users/nmls/Documents/CodexProjects/medical-research-workstation
+  project_status: scaffold_exists_core_implementation_in_progress
+  default_privacy: restricted
+  raw_data_policy: immutable
+  automation_default: disabled
+  zotero_policy: read_first_no_write_by_default
+  obsidian_policy: local_filesystem_first_no_restructure
+  external_upload_default: blocked
+  git_push_default: manual_only
+decisions:
+  install_new_runtime: false
+  duplicate_global_capability_index: false
+  replace_existing_workstation: false
+  continue_research_delta: true

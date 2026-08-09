@@ -1,0 +1,18 @@
+schema_version: v5
+template_id: qpcr-study
+project_id: replace-with-project-id
+title: Replace with qPCR study title
+study_type: qpcr-study
+privacy_level: restricted
+data_policy: {raw_immutable: true, identifiers_allowed: false}
+statistics:
+  statistical_unit: biological_replicate
+  technical_replicates: VERIFY_REQUIRED
+  normalization: VERIFY_REQUIRED
+  primary_outcome: VERIFY_REQUIRED
+assay:
+  platform: VERIFY_REQUIRED
+  reference_gene: VERIFY_REQUIRED
+  efficiency_correction: VERIFY_REQUIRED
+evidence_policy: {verified_source_required_for_formal_citation: true}
+provenance: {required: true, manifest: provenance/run-manifest.yaml, hash_algorithm: sha256}

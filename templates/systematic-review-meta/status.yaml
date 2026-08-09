@@ -1,0 +1,8 @@
+schema_version: v5
+state: planning
+last_updated: VERIFY_REQUIRED
+milestone: protocol_setup
+data_readiness: not_started
+analysis_readiness: blocked_until_search_and_extraction_locked
+open_risks: [register protocol if applicable, verify all citations, lock effect measure and heterogeneity model]
+last_run_id: null

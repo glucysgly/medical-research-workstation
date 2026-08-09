@@ -1,0 +1,15 @@
+{
+  "csv": [],
+  "generated_at": "2026-08-09T07:07:09Z",
+  "manifest_sha256": "867df60eb231f9c52aba776cb2a7e61e825fe833bcbbd1774cfc89cb939c5b38",
+  "privacy": {
+    "potential_phi_header_count": 0,
+    "secret_file_count": 0,
+    "status": "pass",
+    "unreadable_file_count": 0
+  },
+  "project_id": "actual-template-v5",
+  "raw_file_count": 0,
+  "schema_version": "v5",
+  "status": "pass"
+}

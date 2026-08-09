@@ -1,0 +1,8 @@
+schema_version: v5
+state: planning
+last_updated: VERIFY_REQUIRED
+milestone: instrument_definition
+data_readiness: not_started
+analysis_readiness: blocked_until_traits_and_assumptions_locked
+open_risks: [verify dataset releases, harmonization and ancestry, inspect weak instruments and pleiotropy]
+last_run_id: null

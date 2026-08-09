@@ -1,0 +1,12 @@
+schema_version: 1
+priority: [scientific_correctness, privacy_and_research_integrity, reproducibility, stability, reduction_of_manual_work, context_efficiency, speed, new_features]
+optimization_policy:
+  weekly: {mode: review_only, max_changes: 0}
+  monthly: {max_proposals: 5, max_promotions: 3, low_risk_auto_promote: false}
+  quarterly: {architecture_review: true, auto_major_refactor: false}
+permission_levels:
+  E0: maintenance
+  E1: low_risk_deterministic_optimization
+  E2: behavioral_change_requires_sandbox_eval_rollback
+  E3: protected_or_high_risk_requires_human_approval
+

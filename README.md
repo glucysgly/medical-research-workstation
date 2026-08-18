@@ -6,6 +6,7 @@
 
 - 先导入并核验已有 Windows/WSL AI 工作站和全局 Skill/MCP/CLI 能力索引，只建设科研差异层。
 - 薄 Router：根据意图选择项目、主 Skill、辅助能力和风险门。
+- 证据边界型自然科学论文修订：以 `evidence-bound-natural-science-writing` 为主路由，叠加 `avoid-overkill` 的范围冻结与停止检查。
 - researchctl：项目、状态、审计、QC、路由、provenance、复现和 CRI 的小型标准库 CLI。
 - 项目模板：临床观察性研究、qPCR、系统综述/Meta、MR/GWAS、公共组学、探索性分析。
 - 科研安全：raw data 不可变、PHI/PII/secret 检查、来源和引用完整性、人工决策闸门。
@@ -23,6 +24,7 @@
 - RESEARCH_CAPABILITY_GAP.md
 - RESEARCH_WORKSTATION_BUILD_PLAN.md
 - registry/RESEARCH_CAPABILITY_VIEW.csv
+- docs/SKILL_CALL_CONDITIONS.md
 
 ## 入口
 

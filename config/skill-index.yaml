@@ -41,6 +41,38 @@ skills:
     triggers: [systematic review, meta-analysis, PRISMA, screening, risk of bias]
     summary: Evidence retrieval, screening, extraction, bias, heterogeneity and synthesis.
     priority: 95
+  - name: life-science-evidence-review
+    category: life-science-literature-synthesis
+    skill_ref: life-science-evidence-review
+    triggers: [literature review, 文献综述, 生命科学综述, 生命科学证据综述, 证据综述, evidence synthesis, research overview, gene review, pathway review, gene family review, knowledge gap analysis, research roadmap]
+    summary: Evidence-first life-science review from a structured Evidence Database, with critical appraisal, cross-study synthesis, knowledge gaps and future research design.
+    call_when: The user requests a biological literature review, evidence synthesis, gene/pathway/process review, knowledge-gap analysis or evidence-based research roadmap.
+    do_not_call_when: Single-paper lookup, formal meta-analysis-only work, raw omics/statistical analysis, or a writing-only rewrite without evidence synthesis.
+    priority: 96
+  - name: avoid-overkill
+    category: proportionality-control
+    skill_ref: avoid-overkill
+    triggers: [avoid overkill, overengineering, 最小修复, 最小改动, 不要过度设计, 别过度设计, 不要过度封装, 避免过度工程, 避免范围蔓延, 不要过度服务, 不要想太多, 防御性写作, 自我削弱式写作, 论文主动, claim-centered, defensive writing, scope creep]
+    summary: Keep engineering and academic writing proportional, reuse-first, evidence-grounded and centered on the intended outcome.
+    call_when: The user explicitly asks for a minimal coherent fix, proportional engineering, scope control, active claim-centered academic writing, or removal of defensive/self-weakening framing.
+    do_not_call_when: Generic coding or writing without an overkill problem, or when the request would require skipping security, data-loss, publication-evidence or explicit acceptance requirements.
+    priority: 98
+  - name: evidence-bound-natural-science-writing
+    category: scientific-writing-integrity
+    skill_ref: evidence-bound-natural-science-writing
+    triggers: [evidence-bound writing, evidence ceiling, claim ceiling, natural-science manuscript, natural science paper, scientific manuscript revision, 自然科学论文, 自然科学稿件, 论文证据边界, 证据约束型修订, defensive scientific writing, overclaiming, association versus causation, 关联与因果, mechanism claim, 机制主张, validated biomarker, internal validation, discordant datasets, evidence contract, claim evidence audit, 主张证据审计]
+    summary: Revise natural-science manuscripts so contribution-forward prose preserves design, measurement level, statistical uncertainty, citation/figure roles and contradictory evidence.
+    call_when: A finished or near-finished natural-science manuscript needs a read-only defensive-writing audit or an explicitly authorized revision without changing its evidence ceiling.
+    do_not_call_when: First drafting, new analysis, data/QC repair, literature or citation discovery, generic grammar/humanization, or changes to methods, outcomes, statistical units, inclusion rules or ethics.
+    priority: 99
+  - name: scientific-figure-drawio
+    category: editable-scientific-figure
+    skill_ref: recreate-scientific-figure-in-drawio
+    triggers: [科研图重绘, 重绘科研图, 科研插图, 科学插图, 可编辑底稿, 可编辑科研图, AI生成的科研图, drawio, draw.io, scientific illustrator, scientific figure redraw, recreate scientific figure, editable drawio, editable scientific figure]
+    summary: Redraw a reference scientific figure live in the visible draw.io canvas as editable primitives, then save, validate and export .drawio plus review/final formats.
+    call_when: The user provides or references an AI-generated PNG/JPEG/SVG/PDF scientific figure and asks for redraw, editable source, or a draw.io base file.
+    do_not_call_when: A numeric/data figure should be regenerated reproducibly from source data, or the task is a dashboard/web diagram, dense microscopy/heatmap/photograph reconstruction without an explicit raster boundary.
+    priority: 97
   - name: mr-gwas
     category: genetics-gwas-mr
     skill_ref: research
@@ -64,6 +96,38 @@ skills:
     skill_ref: nature-writing
     triggers: [manuscript, abstract, results, methods, discussion, paper]
     summary: Write from verified results and citation evidence rather than desired conclusions.
+    priority: 90
+  - name: humanizer-en
+    category: scientific-writing-humanization
+    skill_ref: humanizer
+    triggers: [English humanize, remove AI writing, de-AI prose, English 去AI味, English 去痕]
+    summary: Humanize English prose after claims and citations are stable without inventing facts or changing technical identifiers.
+    call_when: Explicit request to humanize or remove AI-style writing patterns from English prose.
+    do_not_call_when: The input is code, data, citations, frontmatter, or the user has not asked for a style rewrite.
+    priority: 85
+  - name: humanizer-zh
+    category: scientific-writing-humanization
+    skill_ref: humanizer-zh
+    triggers: [中文去AI味, 去 ai 味, 去ai味, 去掉 ai 味, 去掉ai味, 中文去痕, 中文人性化, 中文自然改写]
+    summary: 人性化处理中文科研 prose，保留事实、数字、术语和引用，不新增科学结论。
+    call_when: 用户明确要求中文文本去 AI 味、去痕或自然改写。
+    do_not_call_when: 输入是代码、数据、引用清单、frontmatter，或用户只要求科学内容改写而未要求去痕。
+    priority: 85
+  - name: research-web-taste
+    category: research-web-design
+    skill_ref: design-taste-frontend
+    triggers: [科研网站, 研究门户, landing page, research landing page, research website redesign, 前端反模板, 视觉反套路]
+    summary: Apply anti-slop visual, layout, typography and motion guidance to research landing pages and public project web surfaces.
+    call_when: Building or redesigning a research landing page, project portal, portfolio or marketing-like web surface.
+    do_not_call_when: Manuscript prose, dashboards, data tables, multi-step forms, dense product UI, or native mobile UI.
+    priority: 80
+  - name: artifact-mark-cleanup
+    category: artifact-provenance-hygiene
+    skill_ref: remove-ai-marks
+    triggers: [水印, 去除水印, 清理水印, C2PA, Content Credentials, EXIF, XMP, AI metadata, 不可见字符, remove AI marks]
+    summary: Inspect and clean authorized text and file provenance marks through the configured HTTP service, with honest residual-risk reporting.
+    call_when: Explicit request to inspect or clean AI metadata, invisible Unicode, C2PA or container metadata on owned or authorized content.
+    do_not_call_when: Raw research data, unauthorized content, service health is unavailable, or the goal is to claim human authorship or guaranteed undetectability.
     priority: 90
   - name: manuscript-qc
     category: publication-compliance

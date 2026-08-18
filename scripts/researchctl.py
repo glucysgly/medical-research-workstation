@@ -506,6 +506,16 @@ class ResearchCtl:
     def command_route(self, query: str) -> dict[str, Any]:
         lowered = query.lower()
         routes = [
+            ("remove-ai-marks", "DOC", ("水印", "去除水印", "清理水印", "c2pa", "content credentials", "exif", "xmp", "ai metadata", "不可见字符", "remove ai marks", "remove watermark"), ["security-and-hardening"], "artifact-mark-cleaning"),
+            ("humanizer-zh", "RESEARCH", ("中文去ai味", "去 ai 味", "去ai味", "去掉 ai 味", "去掉ai味", "中文去痕", "中文人性化", "中文自然改写", "humanizer-zh"), ["nature-reviewer"], "manuscript-humanization-zh"),
+            ("humanizer", "RESEARCH", ("english humanize", "humanize english", "humanize this", "remove ai writing", "de-ai prose", "english 去ai味", "english 去痕", "humanizer"), ["nature-reviewer"], "manuscript-humanization-en"),
+            ("recreate-scientific-figure-in-drawio", "DESIGN", ("科研图重绘", "重绘科研图", "科研插图", "科学插图", "可编辑底稿", "可编辑科研图", "ai生成的科研图", "drawio", "draw.io", "scientific illustrator", "scientific figure redraw", "recreate scientific figure", "editable drawio", "editable scientific figure"), ["nature-figure"], "scientific-figure-drawio-redraw"),
+            ("design-taste-frontend", "DESIGN", ("科研网站", "研究门户", "landing page", "research landing page", "research website redesign", "前端反模板", "视觉反套路", "design taste"), ["web-design-guidelines"], "research-web-design"),
+            ("life-science-evidence-review", "RESEARCH", ("生命科学综述", "生命科学证据综述", "文献综述", "证据综述", "evidence synthesis", "research overview", "literature review", "gene review", "pathway review", "gene family review", "knowledge gap analysis", "research roadmap"), ["nature-academic-search", "nature-citation"], "life-science-evidence-review"),
+            ("evidence-bound-natural-science-writing", "RESEARCH", ("evidence-bound writing", "evidence ceiling", "claim ceiling", "natural-science manuscript", "natural science paper", "scientific manuscript revision", "自然科学论文", "自然科学稿件", "论文证据边界", "证据约束型修订", "defensive scientific writing", "overclaiming", "association versus causation", "关联与因果", "机制已证实", "validated biomarker", "internal validation", "discordant datasets", "evidence contract", "claim evidence audit", "主张证据审计"), ["avoid-overkill", "nature-citation"], "evidence-bound-natural-science-writing"),
+            ("avoid-overkill", "RESEARCH", ("论文不要自我削弱", "自我削弱式写作", "防御性写作", "不要替审稿人检讨", "预写审稿意见", "删除预写审稿意见", "删除自我削弱", "删除审稿人预设", "论文改得更主动", "论文主动", "去自我削弱", "claim-centered", "defensive writing", "self-weakening", "reviewer objections", "发布会原则"), ["nature-citation"], "proportional-academic-writing"),
+            ("avoid-overkill", "DEV", ("代码过度封装", "避免过度工程", "不要过度封装", "不要加抽象", "不新增抽象", "不要加静默降级", "静默降级", "不要堆测试补丁", "测试补丁", "不要加无谓校验", "工程最小改动", "最小修复", "overengineering", "minimal coherent change", "test patching", "silent fallback", "unnecessary abstraction", "proportional coding"), ["diagnosing-bugs"], "proportional-engineering"),
+            ("avoid-overkill", "DEV", ("不要过度设计", "别过度设计", "避免范围蔓延", "不要过度服务", "不要想太多", "keep it proportional", "keep it minimal", "stop overthinking", "avoid overkill"), ["diagnosing-bugs"], "proportionality-control"),
             ("nature-academic-search", "RESEARCH", ("临床研究", "临床试验", "队列", "病例对照", "observational", "cohort"), ["data-analytics:validate-data"], "clinical-observational"),
             ("research", "RESEARCH", ("继续这个课题", "继续课题", "resume", "continue", "项目状态", "所有项目", "卡在哪里"), ["superpowers:verification-before-completion"], "project-resume-status"),
             ("data-analytics:validate-data", "DATA", ("检查这份数据", "检查数据", "数据质控"), ["data-analytics:analyze-data-quality"], "structured"),
@@ -529,8 +539,9 @@ class ResearchCtl:
         if capability_path.is_file():
             with capability_path.open(encoding="utf-8-sig", newline="") as handle:
                 rows = list(csv.DictReader(handle))
+            normalized_workflow = workflow_key.replace("-", " ").lower()
             capability = next(
-                (row for row in rows if workflow_key in str(row.get("workflow", "")).lower()),
+                (row for row in rows if normalized_workflow in str(row.get("workflow", "")).lower()),
                 None,
             )
             if capability is None:
@@ -543,7 +554,7 @@ class ResearchCtl:
             "primary_skill": primary,
             "supporting_skills": supporting,
             "workflow_key": workflow_key,
-            "risk_gate": "research-integrity" if primary != "security-and-hardening" else "human-decision-gate",
+            "risk_gate": "human-decision-gate" if primary in {"security-and-hardening", "remove-ai-marks"} else "research-integrity",
             "capability_view": "registry/RESEARCH_CAPABILITY_VIEW.csv",
         }
         if capability:

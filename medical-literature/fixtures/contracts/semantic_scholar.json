@@ -1,0 +1,7 @@
+{
+  "fixture": true,
+  "source": "semantic-scholar",
+  "data": [
+    {"citedPaper": {"paperId": "fixture-paper", "title": "Synthetic reference"}}
+  ]
+}

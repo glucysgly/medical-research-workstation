@@ -1,0 +1,8 @@
+{
+  "fixture": true,
+  "source": "doi-fallback",
+  "provider_records": {
+    "crossref": {"doi": "10.0000/fixture", "title": "Synthetic citation", "year": 2024},
+    "pubmed": {"doi": "10.0000/fixture", "title": "Synthetic citation", "year": 2024}
+  }
+}

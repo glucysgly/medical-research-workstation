@@ -1,0 +1,58 @@
+{
+  "llm": "deepseek-v4-flash",
+  "llm_config": {
+    "model_list": [
+      {
+        "model_name": "deepseek-v4-flash",
+        "litellm_params": {
+          "model": "openai/deepseek-v4-flash",
+          "api_base": "https://api.deepseek.com"
+        }
+      }
+    ]
+  },
+  "summary_llm": "deepseek-v4-flash",
+  "summary_llm_config": {
+    "model_list": [
+      {
+        "model_name": "deepseek-v4-flash",
+        "litellm_params": {
+          "model": "openai/deepseek-v4-flash",
+          "api_base": "https://api.deepseek.com"
+        }
+      }
+    ]
+  },
+  "embedding": "sparse",
+  "parsing": {
+    "multimodal": "OFF",
+    "enrichment_llm": "deepseek-v4-flash",
+    "enrichment_llm_config": {
+      "model_list": [
+        {
+          "model_name": "deepseek-v4-flash",
+          "litellm_params": {
+            "model": "openai/deepseek-v4-flash",
+            "api_base": "https://api.deepseek.com"
+          }
+        }
+      ]
+    }
+  },
+  "temperature": 0.0,
+  "agent": {
+    "agent_llm": "deepseek-v4-flash",
+    "agent_llm_config": {
+      "model_list": [
+        {
+          "model_name": "deepseek-v4-flash",
+          "litellm_params": {
+            "model": "openai/deepseek-v4-flash",
+            "api_base": "https://api.deepseek.com"
+          }
+        }
+      ]
+    },
+    "rebuild_index": true
+  }
+}

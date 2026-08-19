@@ -1,0 +1,24 @@
+# Project manifest for MLRO tool exposure. Vendor MCP registration is deliberately
+# disabled until each upstream passes contract and live smoke tests.
+schema_version = 1
+
+[medlit]
+name = "medical-literature-research"
+allow_cloud_fulltext = false
+formal_counts_include_challenger = false
+default_citation_depth = 1
+
+[medlit.mcp_allowlist.pubmed_search]
+enabled_tools = ["search_pubmed", "get_paper", "export_results"]
+
+[medlit.mcp_allowlist.paper_search]
+enabled_tools = ["search_papers", "get_paper_metadata"]
+
+[medlit.mcp_allowlist.pubmed_evidence]
+enabled_tools = ["search_trials", "get_trial_summary", "map_trial_to_publications"]
+
+[medlit.mcp_allowlist.semantic_scholar]
+enabled_tools = ["paper", "references", "citations", "related"]
+
+[medlit.mcp_allowlist.doi_verifier]
+enabled_tools = ["verify_citation"]

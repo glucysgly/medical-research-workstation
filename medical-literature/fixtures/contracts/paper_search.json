@@ -1,0 +1,7 @@
+{
+  "fixture": true,
+  "source": "paper-search",
+  "records": [
+    {"title": "Synthetic discovery record", "doi": "10.0000/fixture"}
+  ]
+}

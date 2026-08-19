@@ -1,0 +1,29 @@
+schema_version: 2
+privacy:
+  allow_cloud_fulltext: false
+search:
+  default_mode: QUICK
+  challenger_modes:
+    - DEEP_DISCOVERY
+    - FORMAL_REVIEW
+  max_citation_depth: 1
+  formal_counts_include_challenger: false
+ledger:
+  path: data/medlit.sqlite3
+  preserve_raw_payloads: true
+  never_drop_user_data: true
+roles:
+  formal:
+    - pubmed
+    - embase
+    - wos
+    - scopus
+    - cnki
+    - central
+  discovery:
+    - paper-search
+    - openalex
+  trial_registries:
+    - clinicaltrials.gov
+    - isrctn
+    - who-ictrp

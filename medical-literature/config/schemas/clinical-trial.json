@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClinicalTrial",
+  "type": "object",
+  "required": ["trial_id", "registry", "title", "raw_source"],
+  "properties": {
+    "trial_id": {"type": "string"},
+    "registry": {"type": "string"},
+    "title": {"type": "string"},
+    "status": {"type": ["string", "null"]},
+    "linked_publications": {"type": "array", "items": {"type": "string"}},
+    "raw_source": {"type": ["string", "null"]}
+  }
+}

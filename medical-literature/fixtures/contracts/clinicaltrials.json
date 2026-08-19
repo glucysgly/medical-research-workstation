@@ -1,0 +1,7 @@
+{
+  "fixture": true,
+  "source": "clinicaltrials.gov",
+  "studies": [
+    {"protocolSection": {"identificationModule": {"nctId": "NCT00000000", "briefTitle": "Synthetic trial"}}}
+  ]
+}

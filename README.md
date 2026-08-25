@@ -70,6 +70,8 @@ See [docs/installation/QUICKSTART.md](docs/installation/QUICKSTART.md), [docs/ar
 
 ## 中文说明
 
+> **核心论文能力：**九阶段医学稿件生命周期控制器通过科学流程控制，从源头减少AI论文的模板化结构、拼接逻辑、审计腔和通用套话，使文章形成连贯、稳定、符合固定作者习惯、像真实医学研究者写出的拟人化表达。
+
 医学科研自动化工作站是一个轻量、确定性、可审计、可复现的生物医学科研工作流控制层。它把项目元数据、任务路由、已验证的 Skill/CLI/MCP 边界、数据质控、provenance 和 reproduce 连接起来，但不替代科研判断。
 
 适用方向包括临床观察性研究、qPCR、系统综述/Meta、MR/GWAS 方案、公共组学、scRNA-seq 质控以及论文/投稿闸门。公开仓库只包含通用代码、schema、领域契约和 synthetic fixtures，不包含真实科研数据。

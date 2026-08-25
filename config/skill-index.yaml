@@ -45,7 +45,7 @@ skills:
     category: medical-manuscript-lifecycle
     skill_ref: medical-manuscript-pipeline
     triggers: [医学论文全流程, 论文项目全流程, 完整论文处理, 论文阶段门控, 阶段门控, 论文三本账, 三本账, 投稿准备账, 论文逻辑链, James五步法, James Discussion, manuscript lifecycle, manuscript pipeline, stage-gated manuscript]
-    summary: Orchestrate an end-to-end medical manuscript through source, analysis, evidence, logic, scientific-writing, author-voice, journal and submission gates.
+    summary: Use nine scientific gates to reduce AI-patterned structure, stitched logic, audit prose and generic wording while producing coherent, author-consistent medical manuscripts.
     call_when: A complete medical manuscript project, multi-stage manuscript rescue, stage-gate audit, or submission-readiness workflow needs coordinated state and reusable records.
     do_not_call_when: A single paragraph edit, one citation lookup, standalone analysis, generic humanization, one-off document formatting, or a diagnosis that does not authorize manuscript changes.
     priority: 100

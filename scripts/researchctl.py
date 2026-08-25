@@ -506,6 +506,7 @@ class ResearchCtl:
     def command_route(self, query: str) -> dict[str, Any]:
         lowered = query.lower()
         routes = [
+            ("medical-manuscript-pipeline", "RESEARCH", ("医学论文全流程", "论文项目全流程", "完整论文处理", "完整论文工作流", "论文阶段门控", "阶段门控", "论文三本账", "三本账", "投稿准备账", "论文逻辑链", "james五步法", "james discussion", "manuscript lifecycle", "manuscript pipeline", "stage-gated manuscript"), ["nature-writing", "nature-reviewer"], "medical-manuscript-pipeline"),
             ("nature-academic-search", "RESEARCH", ("临床研究", "临床试验", "队列", "病例对照", "observational", "cohort"), ["data-analytics:validate-data"], "clinical-observational"),
             ("research", "RESEARCH", ("继续这个课题", "继续课题", "resume", "continue", "项目状态", "所有项目", "卡在哪里"), ["superpowers:verification-before-completion"], "project-resume-status"),
             ("data-analytics:validate-data", "DATA", ("检查这份数据", "检查数据", "数据质控"), ["data-analytics:analyze-data-quality"], "structured"),

@@ -15,6 +15,7 @@ It is designed for clinical observational research, qPCR, systematic reviews/met
 - A project and status control plane built around `project.yaml` and `status.yaml`.
 - A thin `researchctl` CLI for project creation, routing, QC, provenance, reproduction and review gates.
 - A Shared Research Core for privacy, statistical-unit, QC and evidence rules.
+- A stage-gated medical-manuscript lifecycle controller with separate evidence, author-decision and submission ledgers.
 - Platform adapters for Codex and Claude Code that reuse the same research contracts.
 - A public-release-safe synthetic smoke workflow and audit tooling.
 
@@ -58,6 +59,7 @@ On Windows, the equivalent wrapper is `bin/researchctl.cmd`. Set `RESEARCHCTL_RO
 | `skills/shared/` | Single source of truth for research and release rules |
 | `skills/codex/` | Codex adapter |
 | `skills/claude/` | Claude Code adapter |
+| `skills/medical-manuscript-pipeline/` | End-to-end manuscript gates, logic, author voice, study branches and reusable templates |
 | `templates/` | Generic project scaffolds |
 | `tests/fixtures/synthetic/` | Small synthetic inputs only |
 | `docs/` | Architecture, installation, safety, contribution and release documentation |
@@ -75,6 +77,7 @@ See [docs/installation/QUICKSTART.md](docs/installation/QUICKSTART.md), [docs/ar
 - 以 `project.yaml` 和 `status.yaml` 管理项目与阶段。
 - 通过 `researchctl` 执行项目创建、任务路由、QC、provenance、复现和 review gate。
 - 通过 Shared Research Core 统一隐私、统计单位、QC 和证据规则。
+- 通过医学论文生命周期控制器管理阶段门控、证据账、作者决定账、投稿准备账、全文逻辑和科学冻结后的去AI。
 - 为 Codex 和 Claude Code 提供薄适配器，共享同一套科研约束。
 - 提供不接触真实研究数据的 synthetic smoke 和公开发布审计工具。
 

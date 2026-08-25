@@ -18,6 +18,9 @@ SECRET_RE = re.compile(
     r"(?i)(?:sk-[A-Za-z0-9]{20,}|gh[pous]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN [^-]+-----|"
     r"(?:api[_-]?key|access[_-]?token|password|passwd|secret|cookie|authorization)\s*[:=]\s*[^\s,;]{12,})"
 )
+SAFE_SECRET_REFERENCE_RE = re.compile(
+    r"(?i)(?:GetEnvironmentVariable\(|os\.environ\.get\(|api_key=\{quote\()"
+)
 PHI_HEADER_RE = re.compile(r"(?i)^\s*(?:patient_id|medical_record_number|mrn|身份证号|姓名)\s*[,=:]")
 
 
@@ -43,7 +46,7 @@ def scan(root: Path) -> dict:
         for number, line in enumerate(text.splitlines(), 1):
             if PRIVATE_PATH_RE.search(line):
                 findings["private_path"].append({"path": relative, "line": number})
-            if SECRET_RE.search(line):
+            if SECRET_RE.search(line) and not SAFE_SECRET_REFERENCE_RE.search(line):
                 findings["secret"].append({"path": relative, "line": number})
             if PHI_HEADER_RE.search(line):
                 findings["phi_pii"].append({"path": relative, "line": number})

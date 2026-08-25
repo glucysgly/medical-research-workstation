@@ -1,5 +1,7 @@
 # Medical Research Workstation
 
+> **Core manuscript capability:** The nine-stage Medical Manuscript Pipeline reduces AI-patterned structure, stitched logic, audit prose and generic wording through scientific process control, producing coherent, author-consistent writing that reads like the work of a real medical investigator.
+
 > AI-assisted, auditable and reproducible biomedical research workstation framework.
 
 **Public candidate:** `v1.0.0-rc1` · **Internal baseline:** `v5.1` · **License:** MIT

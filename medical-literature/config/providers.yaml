@@ -1,0 +1,45 @@
+schema_version: 1
+providers:
+  pubmed:
+    role: FORMAL_DATABASE
+    tier: A_FALLBACK
+    adapter: official-eutils
+    endpoint: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+    auth: NCBI_EMAIL_REQUIRED
+    concurrency: 1
+    requests_per_second: 1
+    max_retries: 2
+  clinicaltrials:
+    role: TRIAL_REGISTRY
+    tier: A_FALLBACK
+    adapter: official-api-v2
+    endpoint: https://clinicaltrials.gov/api/v2
+    auth: PUBLIC
+    concurrency: 1
+    requests_per_second: 1
+    max_retries: 2
+  semantic-scholar:
+    role: CITATION_FORWARD_AND_BACKWARD
+    tier: B
+    adapter: semantic-scholar-api
+    endpoint: https://api.semanticscholar.org/graph/v1
+    auth: OPTIONAL_API_KEY
+    concurrency: 1
+    requests_per_second: 1
+    max_retries: 2
+  crossref-pubmed:
+    role: VERIFIER
+    tier: B_FALLBACK
+    adapter: local-fallback
+    auth: PUBLIC_WITH_POLITE_EMAIL
+    concurrency: 1
+    requests_per_second: 1
+    max_retries: 2
+  scholar-megasearch:
+    role: CHALLENGER
+    tier: B_OPTIONAL
+    adapter: thin-wrapper
+    auth: PROVIDER_DEPENDENT
+    concurrency: 1
+    requests_per_second: 0.5
+    max_retries: 1

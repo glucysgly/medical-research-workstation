@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CanonicalPaper",
+  "type": "object",
+  "required": ["paper_id", "title", "source_roles", "raw_sources", "verification_status"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "doi": {"type": ["string", "null"]},
+    "pmid": {"type": ["string", "null"]},
+    "pmcid": {"type": ["string", "null"]},
+    "source_roles": {"type": "array", "items": {"type": "string"}},
+    "raw_sources": {"type": "array", "items": {"type": "object"}},
+    "verification_status": {"type": "string", "enum": ["VERIFIED_HIGH", "VERIFIED_MEDIUM", "CONFLICT", "UNVERIFIED", "INVALID"]}
+  }
+}

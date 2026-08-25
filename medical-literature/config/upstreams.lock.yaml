@@ -1,0 +1,71 @@
+schema_version: 1
+locked_at: 2026-08-19
+upstreams:
+  pubmed_search_mcp:
+    repo: https://github.com/u9401066/pubmed-search-mcp
+    commit: dbcf0c88c76e6fac30877ff16a9850232e89bd4e
+    version: UNRELEASED_OR_UNVERIFIED
+    license: NOASSERTION
+    tier: TIER_B_PENDING_LICENSE
+    verified: false
+  paper_search_mcp:
+    repo: https://github.com/openags/paper-search-mcp
+    commit: 234678ab231074a7977320978ee0496dcdaddd1f
+    version: UNRELEASED_OR_UNVERIFIED
+    license: MIT
+    tier: TIER_A_CANDIDATE
+    verified: false
+  cnki_skills:
+    repo: https://github.com/cookjohn/cnki-skills
+    commit: 20d65f660456daf53ad0f7c74494ac3b829b925f
+    version: UNRELEASED_OR_UNVERIFIED
+    license: NONE_DECLARED
+    tier: MANUAL_AUTH_REQUIRED
+    verified: false
+  pubmed_evidence_mcp:
+    repo: https://github.com/Tianyu-Qu/mcp-pubmed-evidence
+    commit: f272495c9c3de03791ef45be8b30fc300696c9a7
+    version: UNRELEASED_OR_UNVERIFIED
+    license: MIT
+    tier: TIER_B_WITH_OFFICIAL_FALLBACK
+    verified: false
+  semantic_scholar_skills:
+    repo: https://github.com/zongmin-yu/semantic-scholar-skills
+    commit: 218b02375062954a5ac9f62f85cea12eda3b9d4f
+    version: UNRELEASED_OR_UNVERIFIED
+    license: MIT
+    tier: TIER_B_WITH_API_LIMITS
+    verified: false
+  doi_mcp:
+    repo: https://github.com/tfscharff/doi-mcp
+    commit: 000e722c7b93cd0dd1b846570e0138511f8cd89d
+    version: UNRELEASED_OR_UNVERIFIED
+    license: MIT
+    tier: TIER_B_WITH_FALLBACK
+    verified: false
+  scholar_megasearch:
+    repo: https://github.com/TaewoooPark/scholar-megasearch
+    commit: a24fa3e3274afe84f958279f8b34bc3c67a6b0b5
+    version: UNRELEASED_OR_UNVERIFIED
+    license: MIT
+    tier: TIER_B_CHALLENGER
+    verified: false
+optional:
+  aria_mcp:
+    repo: https://github.com/pkotecha-eng/aria-mcp-server
+    commit: 5624b7c0369c5157c416fd36fa5704c5355c5a8a
+    license: MIT
+    tier: TIER_C
+    status: OPTIONAL_UNVERIFIED
+  who_ictrp_mcp:
+    repo: https://github.com/mattjohnpowell/clinical-trials-mcp
+    commit: 6635fd8e0685e2a16838371d9e9a0f5f8b208123
+    license: ISC
+    tier: TIER_C
+    status: EXPERIMENTAL
+  openalex_mcp:
+    repo: https://github.com/cyanheads/openalex-mcp-server
+    commit: d28b33b32c382cd1d9f563692ab5989f3e801ea6
+    license: Apache-2.0
+    tier: TIER_C_CROSSCHECK
+    status: OPTIONAL_UNVERIFIED

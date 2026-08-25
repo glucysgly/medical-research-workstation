@@ -1,0 +1,56 @@
+# Public LACC/PD-1/PD-L1 known-item fixture.
+# Metadata was checked against the supplied review reference list and PubMed.
+# The mandatory set is limited to direct immunotherapy + definitive
+# chemoradiotherapy evidence; contextual records are kept separately below.
+fixture: true
+status: VERIFIED_METADATA_PENDING_LIVE_RECALL
+topic: locally advanced cervical cancer with immunotherapy and definitive chemoradiotherapy
+items:
+  - id: "10.1016/S0140-6736(24)00317-9"
+    pmid: "38521086"
+    title: "KEYNOTE-A18 primary phase 3 clinical trial"
+    mandatory: true
+    source: "review reference 10 + PubMed"
+  - id: "10.1016/S0140-6736(24)01808-7"
+    pmid: "39288779"
+    title: "KEYNOTE-A18 overall survival results"
+    mandatory: true
+    source: "review reference 11 + PubMed"
+  - id: "10.1016/S1470-2045(23)00479-5"
+    pmid: "38039991"
+    title: "CALLA phase 3 trial"
+    mandatory: true
+    source: "review reference 12 + PubMed"
+  - id: "10.1038/s41467-024-55200-2"
+    pmid: "39788967"
+    title: "Atezolizumab randomized phase I trial"
+    mandatory: true
+    source: "review reference 13 + PubMed"
+  - id: "10.1038/s41467-023-39383-8"
+    pmid: "37349318"
+    title: "NICOL phase I trial"
+    mandatory: true
+    source: "review reference 14 + PubMed"
+  - id: "10.1007/s00262-024-03823-1"
+    pmid: "39358560"
+    title: "TRACE phase I/II trial"
+    mandatory: true
+    source: "review reference 16 + PubMed"
+  - id: "10.1016/j.ygyno.2025.06.003"
+    pmid: "40592026"
+    title: "KEYNOTE-A18 patient-reported outcomes"
+    mandatory: true
+    source: "review reference 20 + PubMed"
+context_items:
+  - id: "10.1056/NEJM199904153401502"
+    pmid: "10202165"
+    title: "Cisplatin-based radiotherapy and chemotherapy reference treatment"
+    source: "review reference 1 + PubMed"
+  - id: "10.1016/S1470-2045(20)30753-1"
+    pmid: "33794207"
+    title: "EMBRACE-I MRI-guided adaptive brachytherapy"
+    source: "review reference 2 + PubMed"
+  - id: "10.1016/S0140-6736(24)01438-7"
+    pmid: "39419054"
+    title: "GCIG INTERLACE induction chemotherapy trial"
+    source: "review reference 4 + PubMed"

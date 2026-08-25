@@ -1,0 +1,20 @@
+schema_version: 1
+modes:
+  QUICK:
+    providers: [pubmed, paper-search]
+    qa: minimal
+  DEEP_DISCOVERY:
+    providers: [pubmed, paper-search, clinicaltrials, semantic-scholar, scholar-megasearch]
+    qa: full
+  FORMAL_REVIEW:
+    providers: [pubmed, embase, wos, scopus, cnki, central, clinicaltrials, semantic-scholar, scholar-megasearch]
+    qa: full
+  SEED_EXPANSION:
+    providers: [semantic-scholar, openalex, paper-search]
+    qa: citation
+  TRIAL_LANDSCAPE:
+    providers: [clinicaltrials, isrctn, who-ictrp, pubmed]
+    qa: registry
+  LIBRARY_ANALYSIS:
+    providers: [zotero, crossref-pubmed, mineru, paperqa2]
+    qa: citation_and_library

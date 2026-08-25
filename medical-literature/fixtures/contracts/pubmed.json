@@ -1,0 +1,7 @@
+{
+  "fixture": true,
+  "source": "pubmed",
+  "records": [
+    {"pmid": "fixture-1", "title": "Synthetic PubMed record"}
+  ]
+}
